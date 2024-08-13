@@ -21,15 +21,15 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- Show/highlight which line your cursor is on
 
-vim.opt.ignorecase = true -- Case insensitive
+vim.opt.ignorecase = true
 vim.opt.smartcase = true -- Case sensitive when capital letters
 
-vim.opt.splitright = true -- Splits behaviour
+vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.opt.scrolloff = 7 -- Scroll offset
-vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
-vim.opt.breakindent = true -- Enable break indent
+vim.opt.showmode = false -- Since mode is already in the statusline
+vim.opt.breakindent = true
 vim.opt.undofile = true -- Save undo history
 
 vim.opt.updatetime = 250 -- Decrease update time
@@ -51,8 +51,6 @@ end)
 -- NOTE: ### Basic Keymaps ###
 --  See `:help vim.keymap.set()`
 
--- Clear highlights on search when pressing <Esc> in normal mode
--- See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- <cmd> instead of : (i.g. it's explicit way of telling that)
 
 vim.keymap.set('n', '<F2>', '<cmd>split term://bash<enter>', { desc = 'Open terminal' }) -- Terminal emulator keymap
@@ -61,7 +59,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<F7>', '<cmd>!gcc % && ./a.out <CR>', { desc = 'compile C code with the gcc compiler' }) -- Compiling keymap
 
 -- See: `:help wincmd` - list of all window commands
--- CTRL+<hjkl> as faster window navigation
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -255,44 +252,35 @@ require('lazy').setup({
           end
 
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition') --  To jump back, press <C-t>.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences') -- Find references for the word under your cursor.
+          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation') --  Useful when your language has ways of declaring types without an actual implementation.
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition') -- When unsure about type of a variable
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
           map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols') -- entire project-wide
 
-          -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame') --  Most Language Servers support renaming across files, etc.
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
+          -- WARN: This is not Goto Definition, this is Goto Declaration. Ex: in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-          -- The following two autocommands are used to highlight references of the
-          -- word under your cursor when your cursor rests there for a little while.
-          --    See `:help CursorHold` for information about when this is executed
-          --
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
+          -- Highlight references of the word cursor is on
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, { -- See `:help CursorHold`
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
+            -- Clear highlights after cursor movement
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -308,10 +296,7 @@ require('lazy').setup({
             })
           end
 
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
+          -- Inlay hints (if the LSP supports them)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
@@ -320,16 +305,11 @@ require('lazy').setup({
         end,
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+      -- Telling LSP about Neovim's capabilities (they are expanded with certain plugins)
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
+      --  NOTE: ### Language Servers ###
       --  Add any additional override configuration in the following tables. Available keys are:
       --  - cmd (table): Override the default command used to start the server
       --  - filetypes (table): Override the default list of associated filetypes for the server
@@ -341,14 +321,13 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
-        --
 
         lua_ls = {
           -- cmd = {...},
@@ -544,7 +523,7 @@ require('lazy').setup({
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
     --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+    -- `:Telescope colorscheme` lists installed schemes
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
