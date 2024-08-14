@@ -20,6 +20,7 @@ vim.g.have_nerd_font = false -- true if Nerd Font in installed and selected in t
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- Show/highlight which line your cursor is on
+vim.opt.colorcolumn = '80'
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true -- Case sensitive when capital letters
@@ -72,7 +73,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.highlight.on_yank { timeout = 80 }
   end,
 })
 
