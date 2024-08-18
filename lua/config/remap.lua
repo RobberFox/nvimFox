@@ -3,7 +3,7 @@ vim.g.maplocalleader = "\\"
 
 --  See `:help vim.keymap.set()`
 -- 3 ways to refer to command-line commands: '<cmd>commandhere', ':commandhere' vim.cmd.commandhere'
-vim.keymap.set("n", "<leader>ep", vim.cmd.ex)
+vim.keymap.set("n", "<leader>ep", vim.cmd.Explore)
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
@@ -18,7 +18,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 -- vim.keymap.set("n", "Q", "<nop>")
 
--- quick-fix list navigation
+-- See: `:help quickfix`
 vim.keymap.set("n", "<leader>cn", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>cp", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lprev<CR>zz")

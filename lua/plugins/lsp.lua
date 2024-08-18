@@ -117,13 +117,29 @@ return {
 					-- filetypes = { ...},
 					-- capabilities = {},
 					settings = {
-						Lua = {
-							completion = {
-								callSnippet = 'Replace',
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
+					Lua = {
+						runtime = {
+							-- Tell the language server which version of Lua you're using
+							-- (most likely LuaJIT in the case of Neovim)
+							version = 'LuaJIT',
 						},
+						diagnostics = {
+							-- To avoid "Undefined Global" warning
+							-- globals = { 'awesome', 'client' },
+							disable = { 'missing-fields', 'undefined-global', "lowercase-global" } ,
+						},
+						workspace = {
+							-- Make the server aware of Neovim runtime files, awesome libraries
+							library = {
+								vim.api.nvim_get_runtime_file("", true),
+								{ "/usr/share/awesome/lib/" },
+							},
+						},
+						-- Do not send telemetry data containing a randomized but unique identifier
+						completion = {
+							callSnippet = 'Replace',
+						},
+					},
 					},
 				},
 			}
