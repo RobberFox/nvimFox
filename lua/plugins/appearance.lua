@@ -10,8 +10,9 @@ return {
 	{
 		'echasnovski/mini.statusline',
 		config = function()
-			require('mini.statusline').setup() -- you can write a helper variable `local statusline = require 'mini.statusline'`
-			require('mini.statusline').section_location = function() -- and write `statusline.section_location` instead
+			local statusline = require('mini.statusline')
+			statusline.setup() -- you can write a helper variable `local statusline = require 'mini.statusline'`
+			statusline.section_location = function() -- and write `statusline.section_location` instead
 				return '%l:%L %-2v' -- formatting ruler as LINE:TOTAL COLUMN
 			end
 		end,
