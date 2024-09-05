@@ -6,13 +6,19 @@ return {
 			vim.cmd.colorscheme 'tokyonight-night'
 			vim.cmd.hi 'Comment gui=none'
 		end,
+
+		-- config = function()
+		-- 	on_colors = function(colors)
+		-- 		colors.EndOfBuffer = 
+		-- 	end
+		-- end,
 	},
 	{
 		'echasnovski/mini.statusline',
 		config = function()
 			local statusline = require('mini.statusline')
-			statusline.setup() -- you can write a helper variable `local statusline = require 'mini.statusline'`
-			statusline.section_location = function() -- and write `statusline.section_location` instead
+			statusline.setup()
+			statusline.section_location = function()
 				return '%l:%L %-2v' -- formatting ruler as LINE:TOTAL COLUMN
 			end
 		end,

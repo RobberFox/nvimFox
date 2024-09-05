@@ -4,9 +4,12 @@ vim.g.maplocalleader = "\\"
 --  See `:help vim.keymap.set()`
 -- 3 ways to refer to command-line commands: '<cmd>commandhere', ':commandhere' vim.cmd.commandhere'
 vim.keymap.set("n", "<leader>ep", vim.cmd.Explore)
+vim.keymap.set("n", "<leader>nt", "<cmd>Neotree toggle=true<CR>" )
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set({"n", "i"}, "<A-c>", "<cmd>%y<CR>")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -16,7 +19,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- sigma yank-substitute remap
 vim.keymap.set("x", "<leader>p", "\"_dP")
--- vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>")
 
 -- See: `:help quickfix`
 vim.keymap.set("n", "<leader>cn", "<cmd>cnext<CR>zz")
