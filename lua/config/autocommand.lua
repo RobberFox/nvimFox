@@ -17,3 +17,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.opt.formatoptions:remove{ 'c', 'r', 'o' }
 	end
 })
+

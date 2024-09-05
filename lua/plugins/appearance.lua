@@ -7,11 +7,8 @@ return {
 			vim.cmd.hi 'Comment gui=none'
 		end,
 
-		-- config = function()
-		-- 	on_colors = function(colors)
-		-- 		colors.EndOfBuffer = 
-		-- 	end
-		-- end,
+		config = function()
+		end,
 	},
 	{
 		'echasnovski/mini.statusline',
