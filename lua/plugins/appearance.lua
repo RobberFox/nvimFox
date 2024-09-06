@@ -6,12 +6,11 @@ return {
 			vim.cmd.colorscheme 'tokyonight-night'
 			vim.cmd.hi 'Comment gui=none'
 		end,
-
-		config = function()
-		end,
 	},
+
 	{
 		'echasnovski/mini.statusline',
+
 		config = function()
 			local statusline = require('mini.statusline')
 			statusline.setup()
@@ -20,5 +19,11 @@ return {
 			end
 		end,
 	},
-	{ 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } }, -- Highlight todo, notes, etc in comments
+
+	{
+		'folke/todo-comments.nvim',
+		event = 'VimEnter',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		opts = { signs = false }
+	},
 }
