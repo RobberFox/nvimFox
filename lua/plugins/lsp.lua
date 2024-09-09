@@ -110,8 +110,8 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				-- tsserver = {},
-				vtsls = {}, -- when tsserver doesn't work
+				ts_ls = {},
+				--vtsls = {}, -- when tsserver doesn't work
 
 				lua_ls = {
 					-- cmd = {...},
