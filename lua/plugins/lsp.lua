@@ -112,6 +112,8 @@ return {
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				ts_ls = {},
 				--vtsls = {}, -- when tsserver doesn't work
+				cssls = {},
+				html = {},
 
 				lua_ls = {
 					-- cmd = {...},
