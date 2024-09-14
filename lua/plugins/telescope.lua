@@ -1,31 +1,32 @@
 return {
-	{ -- See `:help telescope` and `:help telescope.setup()`
+	{
 		'nvim-telescope/telescope.nvim',
 		event = 'VimEnter',
 		branch = '0.1.x',
 		dependencies = {
-			'nvim-lua/plenary.nvim', -- random library
-			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
+			'nvim-lua/plenary.nvim', -- library
+
+			{ -- When errors: telescope-fzf-native README
 				'nvim-telescope/telescope-fzf-native.nvim',
 
-				build = 'make', -- `build` is used to some some command only when the plugin is installed/updated.
+				build = 'make', -- `build` is used to some commands only when the plugin is installed/updated.
 
 				cond = function() -- condition to determine if plugin should be installed and loaded
 					return vim.fn.executable 'make' == 1
 				end,
 			},
-			{ 'nvim-telescope/telescope-ui-select.nvim' },
+
+			'nvim-telescope/telescope-ui-select.nvim',
 
 			{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font }, -- For pretty icons, requires Nerd Font
 		},
+
 		config = function()
 			--  <c-/> (insert) or ? (normal) -- show keymaps for the current Telescope picker
 
 			require('telescope').setup {
 				extensions = {
-					['ui-select'] = {
-						require('telescope.themes').get_dropdown(),
-					},
+					['ui-select'] = { require('telescope.themes').get_dropdown() },
 				},
 			}
 
@@ -33,39 +34,38 @@ return {
 			pcall(require('telescope').load_extension, 'fzf')
 			pcall(require('telescope').load_extension, 'ui-select')
 
-			-- See `:help telescope.builtin`
 			local builtin = require 'telescope.builtin'
-			vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-			vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-			vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-			vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-			vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-			vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-			vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-			vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-			vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+			vim.keymap.set('n', '<leader>sh', builtin.help_tags)
+			vim.keymap.set('n', '<leader>sk', builtin.keymaps)
+			vim.keymap.set('n', '<leader>sf', builtin.find_files)
+			vim.keymap.set('n', '<leader>ss', builtin.builtin)
+			vim.keymap.set('n', '<leader>sw', builtin.grep_string)
+			vim.keymap.set('n', '<leader>sg', builtin.live_grep)
+			vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
+			vim.keymap.set('n', '<leader>sr', builtin.resume)
+			vim.keymap.set('n', '<leader>s.', builtin.oldfiles)
+			vim.keymap.set('n', '<leader><leader>', builtin.buffers)
 
+			-- Passing function to change Telescope's appearance
 			vim.keymap.set('n', '<leader>/', function()
-				-- Passing additional configuration to Telescope to change the theme, layout, etc.
 				builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
 					winblend = 0, -- transparency
 					previewer = false,
 				})
-			end, { desc = '[/] Fuzzily search in current buffer' })
+			end)
 
-			-- It's also possible to pass additional configuration options.
-			--  See `:help telescope.builtin.live_grep()` for information about particular keys
 			vim.keymap.set('n', '<leader>s/', function()
 				builtin.live_grep {
 					grep_open_files = true,
 					prompt_title = 'Live Grep in Open Files',
 				}
-			end, { desc = '[S]earch [/] in Open Files' })
+			end)
 
-			vim.keymap.set('n', '<leader>sn', function() -- Shortcut for searching your Neovim configuration files
-				builtin.find_files { cwd = vim.fn.stdpath 'config' } -- cwd (current working dir) is overriden with config folder
-			end, { desc = '[S]earch [N]eovim files' })
+			vim.keymap.set('n', '<leader>sn', function()
+				builtin.find_files {
+					cwd = vim.fn.stdpath 'config' -- cwd is overriden with config folder
+				}
+			end)
 		end,
 	},
 }

@@ -18,3 +18,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	desc = 'Prevent style overrides from /usr/share/nvim/runtime/...',
+	group = vim.api.nvim_create_augroup('robberfox-tab', { clear = true }),
+	callback = function()
+		vim.opt.tabstop = 4
+		vim.opt.shiftwidth = 4
+		vim.opt.softtabstop = 4
+		vim.opt.expandtab = false
+	end
+})

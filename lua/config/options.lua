@@ -7,9 +7,11 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true -- Cursor line highlight
 vim.opt.colorcolumn = '80'
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- Not working: use autocommands
+-- vim.opt_local.tabstop = 4
+-- vim.opt_local.shiftwidth = 4
+-- vim.opt_local.softtabstop = 4
+-- vim.opt_local.expandtab = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
