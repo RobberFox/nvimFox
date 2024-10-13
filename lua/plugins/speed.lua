@@ -27,4 +27,37 @@ return {
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
 	},
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+		},
+
+
+		config = function()
+			vim.keymap.set("n", "<leader>ep", "<cmd>Neotree toggle=true<CR>" )
+
+			require("neo-tree").setup({
+				window = {
+					width = 25,
+					mappings = {
+						["Z"] = "expand_all_nodes",
+					},
+				},
+				event_handlers = {
+					{
+						event = "neo_tree_buffer_enter",
+						handler = function(arg)
+							vim.cmd([[ setlocal relativenumber ]])
+						end,
+					},
+				},
+			})
+		end,
+	}
 }
