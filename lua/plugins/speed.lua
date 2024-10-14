@@ -16,6 +16,11 @@ return {
 			vim.keymap.set({"n", "i"}, "<A-2>", function() harpoon:list():select(2) end)
 			vim.keymap.set({"n", "i"}, "<A-3>", function() harpoon:list():select(3) end)
 			vim.keymap.set({"n", "i"}, "<A-4>", function() harpoon:list():select(4) end)
+			vim.keymap.set({"n", "i"}, "<A-5>", function() harpoon:list():select(5) end)
+			vim.keymap.set({"n", "i"}, "<A-6>", function() harpoon:list():select(6) end)
+			vim.keymap.set({"n", "i"}, "<A-7>", function() harpoon:list():select(7) end)
+			vim.keymap.set({"n", "i"}, "<A-8>", function() harpoon:list():select(8) end)
+			vim.keymap.set({"n", "i"}, "<A-9>", function() harpoon:list():select(9) end)
 
 		end,
 	},
@@ -40,13 +45,14 @@ return {
 
 
 		config = function()
-			vim.keymap.set("n", "<leader>ep", "<cmd>Neotree toggle=true<CR>" )
+			vim.keymap.set("n", "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
 			require("neo-tree").setup({
 				window = {
-					width = 25,
+					-- width = 25,
 					mappings = {
 						["Z"] = "expand_all_nodes",
+						["/"] = "none",
 					},
 				},
 				event_handlers = {
