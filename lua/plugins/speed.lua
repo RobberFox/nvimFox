@@ -45,7 +45,7 @@ return {
 
 
 		config = function()
-			vim.keymap.set("n", "<A-h>", "<cmd>Neotree toggle=true<CR>" )
+			vim.keymap.set({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
 			require("neo-tree").setup({
 				window = {
