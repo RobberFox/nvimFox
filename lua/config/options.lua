@@ -41,6 +41,6 @@ vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how neovim will display certain whitespaces.
 
-vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3 -- Tree listing
+-- vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3 -- Tree listing
