@@ -87,7 +87,13 @@ return {
 
 			local servers = {
 				-- See `:help lspconfig-all` - list of LSPs
-				clangd = {},
+				clangd = {
+					-- setup = {
+					-- 	init_options = {
+					-- 		fallbackFlags = { '-I/usr/include/gtk-4.0' },
+					-- 	}
+					-- }
+				},
 				ts_ls = {},
 				-- vtsls = {}, -- when tsserver doesn't work
 				cssls = {},
