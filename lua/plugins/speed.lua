@@ -47,6 +47,12 @@ return {
 		config = function()
 			vim.keymap.set({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
+			local toggle_autoclose = true
+			vim.keymap.set("n", "<leader>ta", function()
+				toggle_autoclose = not toggle_autoclose
+				vim.notify("Neotree autoclose: "..tostring(toggle_autoclose))
+			end)
+
 			require("neo-tree").setup({
 				window = {
 					-- width = 25,
@@ -65,10 +71,9 @@ return {
 					{
 						event = "file_open_requested",
 						handler = function()
-							-- auto close
-							-- vim.cmd("Neotree close")
-							-- OR
-							require("neo-tree.command").execute({ action = "close" })
+							if toggle_autoclose == true then
+								require("neo-tree.command").execute({ action = "close" })
+							end
 						end
 					},
 				},
