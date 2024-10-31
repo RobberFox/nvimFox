@@ -1,5 +1,8 @@
 return {
-	'terrastruct/d2-vim',
+	{
+		'terrastruct/d2-vim',
+		ft = "d2",
+	},
 	-- config = function()
 	-- 	vim.g.d2_block_string_syntaxes = {
 	-- 		d2 = 'd2',

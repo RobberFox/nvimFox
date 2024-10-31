@@ -32,7 +32,7 @@ vim.keymap.set("n", "<leader>b", "<cmd>!chmod u+x %<CR>")
 
 vim.keymap.set("n", "<F2>", "<cmd>split term://bash<enter>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- <Esc><Esc> won"t work on all terminal emulators
-vim.keymap.set("n", "<F7>", "<cmd>!gcc % && ./a.out <CR>")
+vim.keymap.set("n", "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
 
