@@ -6,6 +6,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- Cursor line highlight
 vim.opt.colorcolumn = '80'
+vim.opt.conceallevel = 1
 
 -- Not working: use autocommands
 -- vim.opt_local.tabstop = 4
@@ -44,3 +45,23 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how neov
 -- vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_liststyle = 3 -- Tree listing
+
+-- NOTE: Language stuff
+
+local function escape(str)
+  -- You need to escape these characters to work correctly
+  local escape_chars = [[;,."|\]]
+  return vim.fn.escape(str, escape_chars)
+end
+
+-- Recommended to use lua template string
+local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
+local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
+
+vim.opt.langmap = vim.fn.join({
+    -- | `to` should be first     | `from` should be second
+    escape(ru_shift) .. ';' .. escape(en_shift),
+    escape(ru) .. ';' .. escape(en),
+}, ',')
