@@ -46,6 +46,8 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 vim.keymap.set({"n", "i"},"<A-s>", "<cmd>wall<CR>")
 vim.keymap.set({"n", "i"},"<A-q>", "<cmd>qall<CR>")
 
+vim.keymap.set("n", "<leader>x", "<cmd>set foldmethod=marker<CR>")
+
 -- NOTE: ### MEGA KEYBINDING ###
 require("config.helper_function") -- table printing function
 
@@ -59,4 +61,3 @@ vim.keymap.set("n", "<leader>z", function()
 	end
 end) -- Increment character alphabetically
 
--- big ligma
