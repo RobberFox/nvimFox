@@ -1,5 +1,15 @@
 return {
 	{
+		'terrastruct/d2-vim',
+		ft = "d2",
+	},
+
+	{
+		'Aasim-A/scrollEOF.nvim',
+		opts = {},
+	},
+
+	{
 		'Wansmer/langmapper.nvim',
 		lazy = false,
 		priority = 1, -- High priority is needed if you will use `autoremap()`
@@ -29,8 +39,6 @@ return {
 				---  method - 'translate' (map translated lhs) or 'feedkeys' (call `nvim_feedkeys` with original lhs)
 				---  lhs - original left-hand side for translation
 				---should return new description as a string. If error is occurs or non-string is returned, original builder with `LM ()` prefix will use
-				---@type nil|function(old_desc, method, lhs): string
-
 				custom_desc = nil,
 				layouts = {
 					---@type table Fallback layout item. Name of key is a name of language
@@ -62,40 +70,5 @@ return {
 			})
 		end,
 	},
-
-	{
-		"epwalsh/obsidian.nvim",
-		version = "*",  -- recommended, use latest release instead of latest commit
-		lazy = true,
-		ft = "markdown",
-		dependencies = {
-			-- Required.
-			"nvim-lua/plenary.nvim",
-			'nvim-telescope/telescope.nvim',
-			'nvim-treesitter/nvim-treesitter',
-		},
-		opts = {
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/stellardriven/",
-				},
-			},
-		},
-	},
-
-	{
-		"oflisback/obsidian-bridge.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-
-		config = function() require("obsidian-bridge").setup() end,
-		event = {
-			"BufReadPre *.md",
-			"BufNewFile *.md",
-		},
-		lazy = true,
-	}
 }
+

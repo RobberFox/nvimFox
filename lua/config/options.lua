@@ -6,13 +6,15 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- Cursor line highlight
 vim.opt.colorcolumn = '80'
-vim.opt.conceallevel = 1
 
--- Not working: use autocommands
--- vim.opt_local.tabstop = 4
--- vim.opt_local.shiftwidth = 4
--- vim.opt_local.softtabstop = 4
--- vim.opt_local.expandtab = false
+vim.opt.conceallevel = 1
+vim.opt.foldenable = false
+
+-- Not working for lua: use autocommands
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -46,6 +48,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how neov
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_liststyle = 3 -- Tree listing
 
+vim.g.tex_flavor = "latex"
+
 -- NOTE: Language stuff
 
 local function escape(str)
@@ -61,7 +65,7 @@ local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
 local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
 
 vim.opt.langmap = vim.fn.join({
-    -- | `to` should be first     | `from` should be second
-    escape(ru_shift) .. ';' .. escape(en_shift),
-    escape(ru) .. ';' .. escape(en),
+	-- | `to` should be first     | `from` should be second
+	escape(ru_shift) .. ';' .. escape(en_shift),
+	escape(ru) .. ';' .. escape(en),
 }, ',')

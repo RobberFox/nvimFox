@@ -20,11 +20,23 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	desc = 'Prevent style overrides from /usr/share/nvim/runtime/...',
+	pattern = "*lua",
 	group = vim.api.nvim_create_augroup('robberfox-tab', { clear = true }),
 	callback = function()
-		vim.opt.tabstop = 4
-		vim.opt.shiftwidth = 4
-		vim.opt.softtabstop = 4
+		vim.opt.tabstop = 3
+		vim.opt.shiftwidth = 3
+		vim.opt.softtabstop = 3
 		vim.opt.expandtab = false
 	end
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	callback = function()
+		if require("nvim-treesitter.parsers").has_parser() then
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+		else
+			vim.opt.foldmethod = "syntax"
+		end
+	end,
 })

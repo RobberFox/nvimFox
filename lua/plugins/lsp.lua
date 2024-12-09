@@ -148,21 +148,9 @@ return {
 	},
 
 	{ -- Autocompletion
-		'hrsh7th/nvim-cmp', -- cmp is broken up inso myriad repos
+		'hrsh7th/nvim-cmp', -- cmp is broken up into myriad repos
 		event = 'InsertEnter',
 		dependencies = {
-			{ -- Snippet Engine & its associated nvim-cmp source
-				'L3MON4D3/LuaSnip',
-				build = (function() -- Build Step is needed for regex support in snippets.
-					if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-						return
-					end
-					return 'make install_jsregexp'
-				end)(),
-				dependencies = {
-					-- `friendly-snippets` - premade snippets.
-				},
-			},
 			'saadparwaiz1/cmp_luasnip',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',

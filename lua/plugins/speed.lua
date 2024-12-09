@@ -43,7 +43,6 @@ return {
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		},
 
-
 		config = function()
 			vim.keymap.set({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
