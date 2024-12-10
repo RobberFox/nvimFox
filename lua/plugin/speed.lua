@@ -1,13 +1,22 @@
 return {
 	{
-		'theprimeagen/harpoon',
-		branch = 'harpoon2',
+		"theprimeagen/harpoon",
+		branch = "harpoon2",
 		requires = { {"nvim-lua/plenary.nvim"} },
 
 		config = function()
 			local harpoon = require("harpoon")
 
-			harpoon:setup()
+			harpoon:setup({
+				settings = {
+					save_on_toggle = true,
+					sync_on_ui_close = false,
+					key = function()
+						return vim.loop.cwd()
+					end,
+				},
+			})
+
 
 			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 			vim.keymap.set({"n"}, "<leader>h", function() harpoon.ui:toggle_quick_menu((harpoon:list()), { border = "rounded", title_pos = "center" }) end)
@@ -26,7 +35,7 @@ return {
 	},
 
 	{
-		'mbbill/undotree',
+		"mbbill/undotree",
 
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

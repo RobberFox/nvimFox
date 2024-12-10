@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- 3 ways to refer to command-line commands: '<cmd>commandhere', ':commandhere' vim.cmd.commandhere'
+-- 3 ways to refer to command-line commands: "<cmd>commandhere", ":commandhere" vim.cmd.commandhere"
 -- vim.keymap.set("n", "<leader>ep", vim.cmd.Explore)
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
@@ -37,10 +37,10 @@ vim.keymap.set("n", "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
 
 -- See: `:help wincmd` - list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
+vim.keymap.set({"n", "i"}, "<C-h>", "<Esc><C-w><C-h>")
+vim.keymap.set({"n", "i"}, "<C-l>", "<Esc><C-w><C-l>")
+vim.keymap.set({"n", "i"}, "<C-j>", "<Esc><C-w><C-j>")
+vim.keymap.set({"n", "i"}, "<C-k>", "<Esc><C-w><C-k>")
 
 -- Write, quit
 vim.keymap.set({"n", "i"},"<A-s>", "<cmd>wall<CR>")
@@ -49,7 +49,7 @@ vim.keymap.set({"n", "i"},"<A-q>", "<cmd>qall<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>set foldmethod=marker<CR>")
 
 -- NOTE: ### MEGA KEYBINDING ###
-require("config.helper_function") -- table printing function
+require("main.helper_function") -- table printing function
 
 vim.keymap.set("n", "<leader>z", function()
 	if (vim.opt.nrformats:get()[3] == "alpha") then
@@ -60,4 +60,3 @@ vim.keymap.set("n", "<leader>z", function()
 		vim.notify(tprint(vim.opt.nrformats:get()))
 	end
 end) -- Increment character alphabetically
-

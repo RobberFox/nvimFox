@@ -7,8 +7,8 @@ return {
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
-			'nvim-telescope/telescope.nvim',
-			'nvim-treesitter/nvim-treesitter',
+			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter/nvim-treesitter",
 		},
 		opts = {
 			workspaces = {
