@@ -30,6 +30,6 @@ This is a modularized kickstart.nvim configuration. Current goals are finishing 
 ```
 `init.lua` - disables neotree and contains: `lazy.nvim` package manager config, language switching config https://github.com/Wansmer/langmapper.nvim
 
-**Main** - Vanilla nvim configuration
-**Plugin** - `lazy.nvim`'s plugin spec
+**Main** - Vanilla nvim configuration.<br>
+**Plugin** - `lazy.nvim`'s plugin spec.<br>
 **Custom** - some long plugin configuration that I've extracted into separate files, I then require them in the plugin spec. For example, I have `function() require("custom.cmp_config") end` in `lsp.lua` in `nvim-cmp` autocompletion config.
