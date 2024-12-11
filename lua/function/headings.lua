@@ -1,14 +1,20 @@
 function heading(num)
-	local preceding_line = vim.fn.getline(vim.fn.line(".") - 1)
-	local carets = preceding_line:match("^>*")
+	local line = vim.fn.getline(vim.fn.line("."))
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local carets = line:match("^>*")
 
-	if preceding_line:match("^>*%d%.%s.") then
-		local list_index = preceding_line:match("%d")
-		vim.fn.setline(".", carets..tostring(list_index+1)..". ")
+	if line:match("^>*%s*#+") then
+		local heading = line:match("#+%s*")
+		local text = line:gsub(carets..heading, "")
 
-	elseif preceding_line:match("^>*%d%.%s$") or preceding_line:match("^>*%d%.$") then
-		vim.fn.setline(vim.fn.line(".")-1, carets)
+		vim.fn.setline(".", carets..("#"):rep(num).." "..text)
+	else
+		local text = line:gsub(carets, "")
+
+		vim.fn.setline(".", carets..("#"):rep(num).." "..text)
 	end
+
+	vim.api.nvim_win_set_cursor(0, { cursor[1], 100 })
 end
 
 return heading
