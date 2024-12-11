@@ -14,7 +14,7 @@ function heading(num)
 		vim.fn.setline(".", carets..("#"):rep(num).." "..text)
 	end
 
-	vim.api.nvim_win_set_cursor(0, { cursor[1], 100 })
+	vim.cmd("normal $")
 end
 
 return heading
