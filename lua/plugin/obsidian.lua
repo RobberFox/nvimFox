@@ -7,17 +7,11 @@ return {
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
+			"ibhagwan/fzf-lua",
 			"nvim-treesitter/nvim-treesitter",
 		},
-		opts = {
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/stellardriven/",
-				},
-			},
-		},
+
+		opts = require("custom.obsidian_opts"),
 	},
 
 	{
@@ -27,11 +21,12 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 
-		config = function() require("obsidian-bridge").setup() end,
 		event = {
 			"BufReadPre *.md",
 			"BufNewFile *.md",
 		},
+
+		config = function() require("obsidian-bridge").setup() end,
 		lazy = true,
 	}
 }

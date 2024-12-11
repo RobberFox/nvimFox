@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Do :set formatoptions-=cro", -- since runtime files would override it otherwise
 	group = vim.api.nvim_create_augroup("robberfox-commentformat", { clear = true }),
-	pattern = "*",
+	pattern = "*.lua",
 	callback = function()
 		vim.opt.formatoptions:remove{ "c", "r", "o" }
 	end

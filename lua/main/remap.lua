@@ -1,13 +1,15 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.keymap.set("n", "v$", "v$h")
+
 -- 3 ways to refer to command-line commands: "<cmd>commandhere", ":commandhere" vim.cmd.commandhere"
 -- vim.keymap.set("n", "<leader>ep", vim.cmd.Explore)
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set({"n", "i"}, "<A-c>", "<cmd>%y<CR>")
+--vim.keymap.set({"n", "i"}, "<A-c>", "<cmd>%y<CR>")
 
 -- vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -30,11 +32,11 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>b", "<cmd>!chmod u+x %<CR>")
 
-vim.keymap.set("n", "<F2>", "<cmd>split term://bash<enter>")
+-- vim.keymap.set("n", "<F2>", "<cmd>split term://bash<enter>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- <Esc><Esc> won"t work on all terminal emulators
 vim.keymap.set("n", "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
 
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
+--vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
 
 -- See: `:help wincmd` - list of all window commands
 vim.keymap.set({"n", "i"}, "<C-h>", "<Esc><C-w><C-h>")
@@ -43,15 +45,15 @@ vim.keymap.set({"n", "i"}, "<C-j>", "<Esc><C-w><C-j>")
 vim.keymap.set({"n", "i"}, "<C-k>", "<Esc><C-w><C-k>")
 
 -- Write, quit
-vim.keymap.set({"n", "i"},"<A-s>", "<cmd>wall<CR>")
-vim.keymap.set({"n", "i"},"<A-q>", "<cmd>qall<CR>")
+vim.keymap.set({"n", "i"},"<C-s>", "<cmd>wall<CR>")
+vim.keymap.set({"n", "i"},"<C-q>", "<cmd>qall<CR>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>set foldmethod=marker<CR>")
 
 -- NOTE: ### MEGA KEYBINDING ###
-require("main.helper_function") -- table printing function
+local tprint = require("function.tableprint") -- table printing function
 
-vim.keymap.set("n", "<leader>z", function()
+vim.keymap.set("n", "<leader>z", function() -- Increment character alphabetically
 	if (vim.opt.nrformats:get()[3] == "alpha") then
 		vim.opt.nrformats:remove{"alpha"}
 		vim.notify(tprint(vim.opt.nrformats:get()))
@@ -59,4 +61,4 @@ vim.keymap.set("n", "<leader>z", function()
 		vim.opt.nrformats:append{"alpha"}
 		vim.notify(tprint(vim.opt.nrformats:get()))
 	end
-end) -- Increment character alphabetically
+end)

@@ -36,6 +36,4 @@ require("lazy").setup({
 	checker = { enabled = false }, -- automatically check for plugin updates
 })
 
-
-
 require("langmapper").automapping({ global = true, buffer = true })

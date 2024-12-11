@@ -69,3 +69,7 @@ vim.opt.langmap = vim.fn.join({
 	escape(ru_shift) .. ";" .. escape(en_shift),
 	escape(ru) .. ";" .. escape(en),
 }, ",")
+
+-- local info = vim.o.langmap
+-- vim.print(info)
+-- vim.print(info)

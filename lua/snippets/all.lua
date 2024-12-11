@@ -37,3 +37,66 @@ ls.add_snippets("lua", {
 
 ls.add_snippets("tex", {
 })
+
+local list = {
+	{ "de;", "вуж", ">[!definition] " },
+	{ "ru;", "кгж", ">[!rule] " },
+	{ "al;", "фдж", ">[!algorithm] " },
+	{ "th;", "ерж", ">[!theorem] " },
+	{ "le;", "дуж", ">[!lemma] " },
+	{ "la;", "дфж", ">[!law] " },
+	{ "ad;", "фвж", ">[!add] " },
+	{ "ex;", "учж", ">[!example] " },
+	{ "gr;", "пкж", ">[!graveyard] " },
+	{ "fo;", "ащж", ">[!formula] " },
+	{ "lo;", "дщж", ">[!look]\n>" },
+	{ "wa;", "цфж", ">[!warning] " },
+	{ "ti;", "ешж", ">[!tip] " },
+	{ "bl;", "идж", ">[!blank-container]" },
+	{ "im;", "шьж", ">[!important] " },
+}
+
+local keybinds = {}
+
+for index = 1, #list, 1 do
+	keybinds[#keybinds+1] = s({ trig=list[index][1], snippetType="autosnippet" }, {
+		t(list[index][3])
+	})
+	keybinds[#keybinds+1] = s({ trig=list[index][2], snippetType="autosnippet" }, {
+		t(list[index][3])
+	})
+end
+
+local characters = { ">", "-", "=" }
+
+for index = 1, #characters, 1 do
+	keybinds[#keybinds+1] = s({ trig=characters[index].."Ю", snippetType="autosnippet" }, {
+		t(characters[index]..">")
+	})
+end
+
+ls.add_snippets("markdown", keybinds)
+
+
+ls.add_snippets("markdown", {
+	s({ trig="mu;", snippetType="autosnippet" }, {
+		t({ ">[!multi-column]",">>" })
+	}),
+	s({ trig="ьгж", snippetType="autosnippet" }, {
+		t({ ">[!multi-column]",">>" })
+	}),
+
+	s({ trig="Ъ", snippetType="autosnippet" }, {
+		t("|")
+	}),
+	s({ trig="^Ю", trigEngine = "ecma", snippetType="autosnippet" }, {
+		t(">")
+	}),
+	s({ trig="(\\[\\[.*)№", trigengine = "ecma", snippetType="autosnippet" }, {
+	f(function(args, snip) return
+		snip.captures[1].."#" end, {})
+	}),
+	s({ trig="#:", snippetType="autosnippet" }, {
+		t("#^")
+	}),
+})

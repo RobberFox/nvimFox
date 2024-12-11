@@ -17,7 +17,6 @@ return {
 				},
 			})
 
-
 			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 			vim.keymap.set({"n"}, "<leader>h", function() harpoon.ui:toggle_quick_menu((harpoon:list()), { border = "rounded", title_pos = "center" }) end)
 
@@ -32,6 +31,10 @@ return {
 			vim.keymap.set({"n", "i"}, "<A-9>", function() harpoon:list():select(9) end)
 
 		end,
+	},
+
+	{
+		'tpope/vim-eunuch',
 	},
 
 	{
@@ -54,6 +57,7 @@ return {
 
 		config = function()
 			vim.keymap.set({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
+			vim.keymap.set({"n", "i"}, "<A-р>", "<cmd>Neotree toggle=true<CR>" )
 
 			local toggle_autoclose = true
 			vim.keymap.set("n", "<leader>ta", function()

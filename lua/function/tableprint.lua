@@ -22,3 +22,5 @@ function tprint (tbl, indent)
 	toprint = toprint .. string.rep(" ", indent-2) .. "}"
 	return toprint
 end
+
+return tprint
