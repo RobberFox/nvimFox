@@ -39,13 +39,13 @@ vim.keymap.set("n", "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
 --vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
 
 -- See: `:help wincmd` - list of all window commands
-vim.keymap.set({"n", "i"}, "<C-h>", "<Esc><C-w><C-h>")
-vim.keymap.set({"n", "i"}, "<C-l>", "<Esc><C-w><C-l>")
-vim.keymap.set({"n", "i"}, "<C-j>", "<Esc><C-w><C-j>")
-vim.keymap.set({"n", "i"}, "<C-k>", "<Esc><C-w><C-k>")
+vim.keymap.set({"n", "i"}, "<A-Left>", "<Esc><C-w><C-h>")
+vim.keymap.set({"n", "i"}, "<A-Right>", "<Esc><C-w><C-l>")
+vim.keymap.set({"n", "i"}, "<A-Down>", "<Esc><C-w><C-j>")
+vim.keymap.set({"n", "i"}, "<A-Up>", "<Esc><C-w><C-k>")
 
 -- Write, quit
-vim.keymap.set({"n", "i"},"<C-s>", "<cmd>wall<CR>")
+vim.keymap.set({"n", "i"},"<C-s>", "<cmd>wall!<CR>")
 vim.keymap.set({"n", "i"},"<C-q>", "<cmd>qall<CR>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>set foldmethod=marker<CR>")

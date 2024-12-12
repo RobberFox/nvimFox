@@ -8,13 +8,13 @@ function heading(num)
 		local text = line:gsub(carets..heading, "")
 
 		vim.fn.setline(".", carets..("#"):rep(num).." "..text)
+
 	else
 		local text = line:gsub(carets, "")
-
 		vim.fn.setline(".", carets..("#"):rep(num).." "..text)
 	end
 
-	vim.cmd("normal $")
+	vim.api.nvim_win_set_cursor(0, { cursor[1], vim.v.maxcol })
 end
 
 return heading

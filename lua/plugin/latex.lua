@@ -16,18 +16,4 @@ return {
 			})
 		end
 	},
-
-	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
-
-		opts = {
-			enable_autosnippets = true,
-		},
-
-		config = function()
-			require("custom.luasnip_config")
-		end
-	},
 }

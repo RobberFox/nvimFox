@@ -32,7 +32,6 @@ ls.add_snippets("lua", {
 	s({ trig="mk", snippetType="autosnippet" }, {
 		t"$", i(1), t"$", i(2)
 	}),
-
 })
 
 ls.add_snippets("tex", {

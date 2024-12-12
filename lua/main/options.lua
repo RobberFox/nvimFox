@@ -59,8 +59,8 @@ local function escape(str)
 end
 
 -- Recommended to use lua template string
-local en = [[`qwertyuiop[]asdfghjkl;"zxcvbnm]]
-local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+local en = [[`qwertyuiop[]asdfghjkl;"zxcvbnm,.]]
+local ru = [[ёйцукенгшщзхъфывапролджэячсмитьбю]]
 local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
 local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
 
@@ -70,6 +70,4 @@ vim.opt.langmap = vim.fn.join({
 	escape(ru) .. ";" .. escape(en),
 }, ",")
 
--- local info = vim.o.langmap
--- vim.print(info)
--- vim.print(info)
+vim.opt.langmap:append(vim.fn.join({"ёЁ;`~"}, ","))
