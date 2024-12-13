@@ -31,7 +31,7 @@ return {
 				---@type table Modes whose mappings will be checked during automapping.
 				automapping_modes = { "n", "v", "x", "s" },
 				---@type string Standart English layout (on Mac, It may be different in your case.)
-				default_layout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~abcdefghijklmnopqrstuvwxyz,.;"[]`]],
+				default_layout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>?:"{}~@#$^&abcdefghijklmnopqrstuvwxyz,./;'[]`]],
 				---@type string[] Names of layouts. If empty, will handle all configured layouts.
 				use_layouts = {},
 				---@type table Fallback layouts
@@ -46,30 +46,32 @@ return {
 					ru = {
 						---@type string Name of your second keyboard layout in system.
 						---It should be the same as result string of `get_current_layout_id()`
-						id = "com.apple.keylayout.RussianWin",
+						id = "ru",
 						---@type string Fallback layout to translate. Should be same length as default layout
-						layout = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮЖЭХЪËфисвуапршолдьтщзйкыегмцчнябюжэхъё",
+						--yout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~@#$^&abcdefghijklmnopqrstuvwxyz,.;'[]`]],
+						layout = [[ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮ,ЖЭХЪË"№;:?фисвуапршолдьтщзйкыегмцчнябю.жэхъё]],
 						---@type string if you need to specify default layout for this fallback layout
 						default_layout = nil,
 					},
 				},
 				os = {
-					-- Darwin - Mac OS, the result of `vim.loop.os_uname().sysname`
-					Darwin = {
+					-- `vim.loop.os_uname().sysname` gives Linux
+					Linux = {
 						---Function for getting current keyboard layout on your OS
 						---Should return string with id of layout
 						---@return string
 						get_current_layout_id = function()
-							local cmd = "im-select"
+							local cmd = "xkb-switch"
 							if vim.fn.executable(cmd) then
 								local output = vim.split(vim.trim(vim.fn.system(cmd)), "\n")
+
 								return output[#output]
 							end
 						end,
+
 					},
 				},
 			})
 		end,
 	},
-
 }
