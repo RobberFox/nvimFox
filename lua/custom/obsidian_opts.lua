@@ -50,7 +50,7 @@ return {
 
 		local note = client:current_note()
 		if note then
-			return string.format("%s/../Attachments", note.path)
+			return string.format("%s/../Attachments/", note.path)
 		else
 			return string.format("%s-", os.time())
 		end

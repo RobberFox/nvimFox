@@ -48,7 +48,6 @@ local list = {
 	{ "ex;", "учж", ">[!example] " },
 	{ "gr;", "пкж", ">[!graveyard] " },
 	{ "fo;", "ащж", ">[!formula] " },
-	{ "lo;", "дщж", ">[!look]\n>" },
 	{ "wa;", "цфж", ">[!warning] " },
 	{ "ti;", "ешж", ">[!tip] " },
 	{ "bl;", "идж", ">[!blank-container]" },
@@ -83,6 +82,13 @@ ls.add_snippets("markdown", {
 	}),
 	s({ trig="ьгж", snippetType="autosnippet" }, {
 		t({ ">[!multi-column]",">>" })
+	}),
+
+	s({ trig="lo;", snippetType="autosnippet" }, {
+		t({ ">[!look]",">" })
+	}),
+	s({ trig="дщж", snippetType="autosnippet" }, {
+		t({ ">[!look]",">" })
 	}),
 
 	s({ trig="Ъ", snippetType="autosnippet" }, {

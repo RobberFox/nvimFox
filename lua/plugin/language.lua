@@ -31,7 +31,7 @@ return {
 				---@type table Modes whose mappings will be checked during automapping.
 				automapping_modes = { "n", "v", "x", "s" },
 				---@type string Standart English layout (on Mac, It may be different in your case.)
-				default_layout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>?:"{}~@#$^&abcdefghijklmnopqrstuvwxyz,./;'[]`]],
+				default_layout = [[#$^ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~abcdefghijklmnopqrstuvwxyz,.;'[]`]],
 				---@type string[] Names of layouts. If empty, will handle all configured layouts.
 				use_layouts = {},
 				---@type table Fallback layouts
@@ -48,8 +48,7 @@ return {
 						---It should be the same as result string of `get_current_layout_id()`
 						id = "ru",
 						---@type string Fallback layout to translate. Should be same length as default layout
-						--yout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~@#$^&abcdefghijklmnopqrstuvwxyz,.;'[]`]],
-						layout = [[ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮ,ЖЭХЪË"№;:?фисвуапршолдьтщзйкыегмцчнябю.жэхъё]],
+						layout = [[№;:ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮЖЭХЪËфисвуапршолдьтщзйкыегмцчнябюжэхъё]],
 						---@type string if you need to specify default layout for this fallback layout
 						default_layout = nil,
 					},

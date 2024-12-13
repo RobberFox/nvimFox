@@ -37,5 +37,3 @@ require("lazy").setup({
 })
 
 require("langmapper").automapping({ global = true, buffer = true })
-
--- vim.api.nvim_set_hl(0, '@text.code', {bg = '#000FFF'})

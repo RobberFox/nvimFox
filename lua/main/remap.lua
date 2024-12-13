@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "v$", "v$h")
-
 -- 3 ways to refer to command-line commands: "<cmd>commandhere", ":commandhere" vim.cmd.commandhere"
 -- vim.keymap.set("n", "<leader>ep", vim.cmd.Explore)
 

@@ -24,7 +24,7 @@ wrap.simple("<A-a>", "![[", "]]")
 wrap.simple("<A-s>", "[[", "]]")
 wrap.simple("<A-d>", "`", "`")
 wrap.simple("<A-f>", "[](", ")", 3)
-wrap.simple("<A-b>", "%%", "%%")
+wrap.full("<A-b>", "%%", "%%")
 
 local checkbox_function = require("function.checkbox")
 map({"n", "i"}, "<A-t>", function() checkbox_function() end)
