@@ -28,8 +28,10 @@ return {
 				group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
 				callback = function(event)
 
+					local langmap = require('langmapper').map
+
 					local map = function(keys, func)
-						vim.keymap.set('n', keys, func, { buffer = event.buf })
+						langmap('n', keys, func, { buffer = event.buf })
 					end
 
 					map('gd', require('telescope.builtin').lsp_definitions) -- To jump back, press <C-t>.

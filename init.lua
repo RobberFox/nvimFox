@@ -1,13 +1,14 @@
--- require("config.helper_function")
--- local t = vim.opt.nrformats:get()
--- print(tprint(t))
-
 -- `neo-tree` - disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("main") -- vanilla nvim configuration
+-- Vanilla nvim confiuration
+require("main.options")
+require("main.autocommand")
 -- `custom/` is for plugins that I configure in a separate file, then refer to them in the plugin spec
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -36,4 +37,4 @@ require("lazy").setup({
 	checker = { enabled = false }, -- automatically check for plugin updates
 })
 
-require("langmapper").automapping({ global = true, buffer = true })
+require("main.remap") -- in the end, because I need `langmapper` to load

@@ -17,18 +17,20 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-			vim.keymap.set({"n"}, "<leader>h", function() harpoon.ui:toggle_quick_menu((harpoon:list()), { border = "rounded", title_pos = "center" }) end)
+			local map = require('langmapper').map
 
-			vim.keymap.set({"n", "i"}, "<A-1>", function() harpoon:list():select(1) end)
-			vim.keymap.set({"n", "i"}, "<A-2>", function() harpoon:list():select(2) end)
-			vim.keymap.set({"n", "i"}, "<A-3>", function() harpoon:list():select(3) end)
-			vim.keymap.set({"n", "i"}, "<A-4>", function() harpoon:list():select(4) end)
-			vim.keymap.set({"n", "i"}, "<A-5>", function() harpoon:list():select(5) end)
-			vim.keymap.set({"n", "i"}, "<A-6>", function() harpoon:list():select(6) end)
-			vim.keymap.set({"n", "i"}, "<A-7>", function() harpoon:list():select(7) end)
-			vim.keymap.set({"n", "i"}, "<A-8>", function() harpoon:list():select(8) end)
-			vim.keymap.set({"n", "i"}, "<A-9>", function() harpoon:list():select(9) end)
+			map("n", "<leader>a", function() harpoon:list():add() end)
+			map({"n"}, "<leader>h", function() harpoon.ui:toggle_quick_menu((harpoon:list()), { border = "rounded", title_pos = "center" }) end)
+
+			map({"n", "i"}, "<A-1>", function() harpoon:list():select(1) end)
+			map({"n", "i"}, "<A-2>", function() harpoon:list():select(2) end)
+			map({"n", "i"}, "<A-3>", function() harpoon:list():select(3) end)
+			map({"n", "i"}, "<A-4>", function() harpoon:list():select(4) end)
+			map({"n", "i"}, "<A-5>", function() harpoon:list():select(5) end)
+			map({"n", "i"}, "<A-6>", function() harpoon:list():select(6) end)
+			map({"n", "i"}, "<A-7>", function() harpoon:list():select(7) end)
+			map({"n", "i"}, "<A-8>", function() harpoon:list():select(8) end)
+			map({"n", "i"}, "<A-9>", function() harpoon:list():select(9) end)
 
 		end,
 	},
@@ -41,7 +43,9 @@ return {
 		"mbbill/undotree",
 
 		config = function()
-			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+			local map = require('langmapper').map
+
+			map("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
 	},
 
@@ -56,18 +60,17 @@ return {
 		},
 
 		config = function()
-			vim.keymap.set({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
-			vim.keymap.set({"n", "i"}, "<A-р>", "<cmd>Neotree toggle=true<CR>" )
+			local map = require('langmapper').map
+			map({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
 			local toggle_autoclose = true
-			vim.keymap.set("n", "<leader>ta", function()
+			map("n", "<leader>ta", function()
 				toggle_autoclose = not toggle_autoclose
 				vim.notify("Neotree autoclose: "..tostring(toggle_autoclose))
 			end)
 
 			require("neo-tree").setup({
 				window = {
-					-- width = 25,
 					mappings = {
 						["Z"] = "expand_all_nodes",
 						["/"] = "none",

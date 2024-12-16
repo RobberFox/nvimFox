@@ -14,6 +14,13 @@ return {
 				},
 				--other treesitter settings
 			})
-		end
+		end,
+
+		config = function()
+			local map = require("langmapper").map
+
+			map("n", "<localleader>ll", "<cmd>VimtexCompile<CR>")
+
+		end,
 	},
 }

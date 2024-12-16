@@ -20,7 +20,7 @@ return {
 				---@type table Modes whose mappings will be checked during automapping.
 				automapping_modes = { "n", "v", "x", "s" },
 				---@type string Standart English layout (on Mac, It may be different in your case.)
-				default_layout = [[#$^ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~abcdefghijklmnopqrstuvwxyz,.;'[]`]],
+				default_layout = [[@#$^&ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~?abcdefghijklmnopqrstuvwxyz,.;'[]`/]],
 
 				---@type string[] Names of layouts. If empty, will handle all configured layouts.
 				use_layouts = {},
@@ -34,12 +34,8 @@ return {
 				layouts = {
 					---@type table Fallback layout item. Name of key is a name of language
 					ru = {
-						---@type string Name of your second keyboard layout in system.
-						---It should be the same as result string of `get_current_layout_id()`
 						id = "ru",
-						---@type string Fallback layout to translate. Should be same length as default layout
-						layout = [[№;:ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮЖЭХЪËфисвуапршолдьтщзйкыегмцчнябюжэхъё]],
-						---@type string if you need to specify default layout for this fallback layout
+						layout = [["№;:?ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮЖЭХЪË,фисвуапршолдьтщзйкыегмцчнябюжэхъё.]],
 						default_layout = nil,
 					},
 					--am = {
@@ -47,17 +43,13 @@ return {
 					--	---It should be the same as result string of `get_current_layout_id()`
 					--	id = "am",
 					--	---@type string Fallback layout to translate. Should be same length as default layout
-					--	layout = [[՜ՃՓԲՍՄՈՒԿԸԹԾՑ«ՋՎԳԵԱՆԻՏՀՊՐԺԴՉՅԶԼՔԽՇՌ՝ճփբսմուկըթծց»ջվգեանիտհպրժդչյզլքխշռ]],
+					--	layout = [[՜ՃՓԲՍՄՈՒԿըթԾՑ«ՋՎԳԵԱՆԻՏՀՊՐԺԴՉՅԶԼՔԽՇՌ՝ճփբսմուկըթծց»ջվգեանիտհպրժդչյզլքխշռ]],
 					--	---@type string if you need to specify default layout for this fallback layout
 					--	default_layout = nil,
 					--},
 				},
-				os = {
-					-- `vim.loop.os_uname().sysname` gives Linux
+				os = { -- `vim.loop.os_uname().sysname` gives Linux
 					Linux = {
-						---Function for getting current keyboard layout on your OS
-						---Should return string with id of layout
-						---@return string
 						get_current_layout_id = function()
 							local cmd = "xkb-switch"
 
