@@ -32,16 +32,14 @@ return {
 						vim.keymap.set('n', keys, func, { buffer = event.buf })
 					end
 
-					local fzf = require("fzf-lua")
-
-					map('gd', fzf.lsp_definitions) -- To jump back, press <C-t>.
-					map('gr', fzf.lsp_references)
-					map('gI', fzf.lsp_implementations) -- When your language has ways of declaring types without an actual implementation.
-					map('<leader>D', fzf.lsp_typedefs) -- When unsure about type of a variable
+					map('gd', require('telescope.builtin').lsp_definitions) -- To jump back, press <C-t>.
+					map('gr', require('telescope.builtin').lsp_references)
+					map('gI', require('telescope.builtin').lsp_implementations) -- When your language has ways of declaring types without an actual implementation.
+					map('<leader>D', require('telescope.builtin').lsp_type_definitions) -- When unsure about type of a variable
 
 					--  Symbols: variables, functions, types, etc.
-					map('<leader>ds', fzf.lsp_document_symbols) -- Document-wide
-					map('<leader>ws', fzf.lsp_live_workspace_symbols) -- Entire project-wide
+					map('<leader>ds', require('telescope.builtin').lsp_document_symbols) -- Document-wide
+					map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols) -- Entire project-wide
 
 					map('<leader>rn', vim.lsp.buf.rename) --  Most LSPs can rename across files, etc.
 					map('<leader>ca', vim.lsp.buf.code_action) -- Execute error correction suggestion

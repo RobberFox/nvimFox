@@ -1,15 +1,4 @@
 return {
-	--{
-	--	'https://github.com/lyokha/vim-xkbswitch',
-	--	lazy = false,
-	--	init = function()
-	--		vim.g.XkbSwitchEnabled = 1
-	--		-- vim.g.XkbSwitchIMappings = "ru"
-	--		-- vim.g.XkbSwitchNLayout = "us"
-	--		-- vim.g.XkbSwitchILayout = "us"
-	--	end,
-	--},
-
 	{
 		"Wansmer/langmapper.nvim",
 		lazy = false,
@@ -32,6 +21,7 @@ return {
 				automapping_modes = { "n", "v", "x", "s" },
 				---@type string Standart English layout (on Mac, It may be different in your case.)
 				default_layout = [[#$^ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~abcdefghijklmnopqrstuvwxyz,.;'[]`]],
+
 				---@type string[] Names of layouts. If empty, will handle all configured layouts.
 				use_layouts = {},
 				---@type table Fallback layouts
@@ -52,6 +42,15 @@ return {
 						---@type string if you need to specify default layout for this fallback layout
 						default_layout = nil,
 					},
+					--am = {
+					--	---@type string Name of your second keyboard layout in system.
+					--	---It should be the same as result string of `get_current_layout_id()`
+					--	id = "am",
+					--	---@type string Fallback layout to translate. Should be same length as default layout
+					--	layout = [[՜ՃՓԲՍՄՈՒԿԸԹԾՑ«ՋՎԳԵԱՆԻՏՀՊՐԺԴՉՅԶԼՔԽՇՌ՝ճփբսմուկըթծց»ջվգեանիտհպրժդչյզլքխշռ]],
+					--	---@type string if you need to specify default layout for this fallback layout
+					--	default_layout = nil,
+					--},
 				},
 				os = {
 					-- `vim.loop.os_uname().sysname` gives Linux
@@ -61,11 +60,8 @@ return {
 						---@return string
 						get_current_layout_id = function()
 							local cmd = "xkb-switch"
-							if vim.fn.executable(cmd) then
-								local output = vim.split(vim.trim(vim.fn.system(cmd)), "\n")
 
-								return output[#output]
-							end
+							return vim.trim(vim.fn.system(cmd))
 						end,
 
 					},
