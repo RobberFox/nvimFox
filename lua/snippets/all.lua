@@ -29,12 +29,12 @@ local k = require("luasnip.nodes.key_indexer").new_key
 ls.add_snippets("lua", {
 	s("req", fmt("local {} = require('{}')", { i(1, "default"), rep(1)})),
 
-	s({ trig="mk", snippetType="autosnippet" }, {
-		t"$", i(1), t"$", i(2)
-	}),
 })
 
 ls.add_snippets("tex", {
+	s({ trig="mk", snippetType="autosnippet" }, {
+		t"$", i(1), t"$", i(2)
+	}),
 })
 
 local list = {
@@ -54,54 +54,79 @@ local list = {
 	{ "im;", "шьж", ">[!important] " },
 }
 
-local keybinds = {}
+local mysnippets = {}
 
 for index = 1, #list, 1 do
-	keybinds[#keybinds+1] = s({ trig=list[index][1], snippetType="autosnippet" }, {
-		t(list[index][3])
+	mysnippets[#mysnippets+1] = s({ trig="^(>*)"..list[index][1], regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..list[index][3] end, {}),
 	})
-	keybinds[#keybinds+1] = s({ trig=list[index][2], snippetType="autosnippet" }, {
-		t(list[index][3])
+	mysnippets[#mysnippets+1] = s({ trig="^(>*)"..list[index][2], regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..list[index][3] end, {}),
 	})
 end
 
 local characters = { ">", "-", "=" }
 
 for index = 1, #characters, 1 do
-	keybinds[#keybinds+1] = s({ trig=characters[index].."Ю", snippetType="autosnippet" }, {
+	mysnippets[#mysnippets+1] = s({ trig=characters[index].."Ю", snippetType="autosnippet" }, {
 		t(characters[index]..">")
 	})
 end
 
-ls.add_snippets("markdown", keybinds)
+ls.add_snippets("markdown", mysnippets)
 
 
 ls.add_snippets("markdown", {
-	s({ trig="mu;", snippetType="autosnippet" }, {
-		t({ ">[!multi-column]",">>" })
+	s({ trig="^(>*)mu;", regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..">[!multi-column]" end, {}),
+		t({"", ""}),
+		f(function(args, snip) return
+			snip.captures[1]..">>" end, {}),
 	}),
-	s({ trig="ьгж", snippetType="autosnippet" }, {
-		t({ ">[!multi-column]",">>" })
+	s({ trig="^(>*)ьгж", regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..">[!multi-column]" end, {}),
+		t({"", ""}),
+		f(function(args, snip) return
+			snip.captures[1]..">>" end, {}),
 	}),
 
-	s({ trig="lo;", snippetType="autosnippet" }, {
-		t({ ">[!look]",">" })
+	s({ trig="^(>*)lo;", regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..">[!look]" end, {}),
+		t({"", ""}),
+		f(function(args, snip) return
+			snip.captures[1]..">" end, {}),
 	}),
-	s({ trig="дщж", snippetType="autosnippet" }, {
-		t({ ">[!look]",">" })
+	s({ trig="^(>*)дщж", regTrig = true, snippetType="autosnippet" }, {
+		f(function(args, snip) return
+			snip.captures[1]..">[!look]" end, {}),
+		t({"", ""}),
+		f(function(args, snip) return
+			snip.captures[1]..">" end, {}),
 	}),
 
 	s({ trig="Ъ", snippetType="autosnippet" }, {
 		t("|")
 	}),
-	s({ trig="^Ю", trigEngine = "ecma", snippetType="autosnippet" }, {
+	s({ trig="^Ю", regTrig = true, snippetType="autosnippet" }, {
 		t(">")
 	}),
-	s({ trig="(\\[\\[.*)№", trigengine = "ecma", snippetType="autosnippet" }, {
+	s({ trig="^:", regTrig = true, snippetType="autosnippet" }, {
+		t("^")
+	}),
+
+	s({ trig="(%[%[.*)№", regTrig = true, snippetType="autosnippet" }, {
 	f(function(args, snip) return
 		snip.captures[1].."#" end, {})
 	}),
 	s({ trig="#:", snippetType="autosnippet" }, {
+		t("#^")
+	}),
+	s({ trig="№:", snippetType="autosnippet" }, {
 		t("#^")
 	}),
 })

@@ -25,6 +25,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
+
 		opts = {
 		--	obsidian_server_address = "https://127.0.0.1:27124",
 		--	cert_path = "~/.ssl/obsidian.crt",

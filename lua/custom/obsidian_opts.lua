@@ -3,6 +3,10 @@ return {
 		{
 			name = "personal",
 			path = "~/stellardriven/",
+
+			overrides = {
+				disable_frontmatter = true
+			}
 		},
 	},
 

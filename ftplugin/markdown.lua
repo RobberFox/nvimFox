@@ -1,4 +1,3 @@
-vim.opt.linebreak = true
 vim.cmd([[au FileType markdown setl comments=b:*,b:-,b:+,n:>]])
 vim.cmd([[au FileType markdown setl formatoptions+=r]])
 
@@ -43,3 +42,32 @@ map({"n", "i"}, "<A-l>", "<cmd>ObsidianBacklinks<CR>")
 map({"n", "i"}, "<A-m>", "<cmd>ObsidianExtractNote<CR>")
 map({"n", "i"}, "<A-j>", "<cmd>ObsidianSearch<CR>")
 map({"n", "i"}, "<A-n>", "<cmd>ObsidianNew<CR>")
+map({"n", "i"}, "<A-k>", "<cmd>ObsidianTOC<CR>")
+
+vim.opt.linebreak = true
+
+--vim.api.nvim_set_hl(0, 'Normal', { fg = "#ffffff", bg = "#333333" })
+--vim.api.nvim_set_hl(0, 'Comment', { fg = "#111111", bold = true })
+--vim.api.nvim_set_hl(0, 'Error', { fg = "#ffffff", undercurl = true })
+--vim.api.nvim_set_hl(0, 'Cursor', { reverse = true })
+
+--black "#222436"
+--red "#ff757f"
+--green "#c3e88d"
+--yellow "#ffc777"
+--blue "#82aaff"
+--magenta "#c099ff"
+--cyan "#86e1fc"
+--white "#828bb8"
+--orange "#ff966c"
+
+for i = 1, 6, 1 do
+	vim.api.nvim_set_hl(0, "markdownH"..tostring(i), { fg = "#ff757f", bg = "#452e2e", bold = true })
+	vim.api.nvim_set_hl(0, "markdownH"..tostring(i).."Delimiter", { fg = "#ff757f", bg = "#452e2e" })
+end
+
+vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { fg = "#ff757f" })
+vim.api.nvim_set_hl(0, "@markup.italic.markdown_inline", { fg = "#c3e88d" })
+vim.api.nvim_set_hl(0, "@markup.strikethrough.markdown_inline", { fg = "#82aaff" })
+
+--vim.api.nvim_buf_add_highlight(0, 0, "markdownH3", 2, 0, -1)
