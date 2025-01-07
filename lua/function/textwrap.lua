@@ -13,12 +13,12 @@ function M.full(key, left, right, back)
 		local line = vim.api.nvim_get_current_line()
 
 		if line:sub(col, col):match('%s') or (line == nil or line == '') then
-			return "<Esc>a"..left..right..("<Left>"):rep(step_back)
+			return "<Esc>a"..left..right..("<Left>"):rep(step_back).."<Esc>"
 		elseif line:match("^>+") then
 			local shift = line:match("^>+")
-			return "<Esc>"..("<Left>"):rep(shift:len()).."mz^\"xdiw`z\"zciW"..left.."<Esc>\"zpa"..right.."<Esc>mz^\"xP`z"..("<Right>"):rep(shift:len()).."a"
+			return "<Esc>"..("<Left>"):rep(shift:len()).."mz^\"xdiw`z\"zciW"..left.."<Esc>\"zpa"..right.."<Esc>mz^\"xP`z"..("<Right>"):rep(shift:len())
 		else
-			return "<Esc>\"zciW"..left.."<Esc>\"zpa"..right
+			return "<Esc>\"zciW"..left.."<Esc>\"zpa"..right.."<Esc>"
 		end
 	end, { expr = true })
 
@@ -47,15 +47,16 @@ function M.simple(key, left, right, back)
 	end
 
 	map("n", key, function()
-		return "<Esc>a"..left..right..("<Left>"):rep(step_back)
+		return "<Esc>a"..left..right..("<Left>"):rep(step_back).."<Esc>"
 	end, { expr = true })
 
 	map("i", key, function()
 		return "<Esc>a"..left..right..("<Left>"):rep(step_back)
 	end, { expr = true })
 
-	map("v", key,
-	"\"zc"..left.."<Esc>\"zpa"..right..("<Left>"):rep(step_back) )
+	map("v", key, function()
+		return "\"zc"..left.."<Esc>\"zpa"..right..("<Left>"):rep(step_back)
+	end, { expr = true })
 end
 
 return M
