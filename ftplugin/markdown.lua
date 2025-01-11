@@ -21,7 +21,7 @@ wrap.full("<A-r>", "~~", "~~")
 
 wrap.simple("<A-a>", "![[", "]]")
 wrap.simple("<A-s>", "[[", "]]")
-wrap.simple("<A-d>", "`", "`")
+wrap.full("<A-d>", "`", "`")
 wrap.simple("<A-f>", "[](", ")", 3)
 wrap.full("<A-b>", "%%", "%%")
 

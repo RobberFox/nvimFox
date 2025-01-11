@@ -27,7 +27,7 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 ls.add_snippets("lua", {
-	s("req", fmt("local {} = require('{}')", { i(1, "default"), rep(1)})),
+	s("req", fmt("local {} = require(\"{}\")", { i(1, "default"), rep(1)})),
 
 })
 

@@ -30,7 +30,7 @@ map("n", "<leader>b", "<cmd>!chmod u+x %<CR>")
 
 -- map("n", "<F2>", "<cmd>split term://bash<enter>")
 map("t", "<Esc>", "<C-\\><C-n>") -- <Esc><Esc> won"t work on all terminal emulators
-map("n", "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
+map({"n", "i"}, "<F7>", "<cmd>!gcc % -lm && ./a.out <CR>")
 
 --map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" }) -- Diagnostic keymap
 
