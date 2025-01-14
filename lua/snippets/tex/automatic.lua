@@ -1,0 +1,27 @@
+--// Insert space
+--{trigger: "\\\\(${GREEK}|${SYMBOL}|${SHORT_SYMBOL})([A-Za-z])", replacement: "\\[[0]] [[1]]", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) sr", replacement: "\\[[0]]^{2}", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) cb", replacement: "\\[[0]]^{3}", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) rd", replacement: "\\[[0]]^{$0}$1", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) (hat|dot|bar|vec)", replacement: "\\[[1]]{\\[[0]]}", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) tild", replacement: "\\tilde{\\[[0]]}", options: "rmA"},
+--{trigger: "\\\\(${GREEK}|${SYMBOL}) und", replacement: "\\underline{\\[[0]]}", options: "rmA"},
+--{trigger: "\\\\(${GREEK}),\\.", replacement: "\\boldsymbol{\\[[0]]}", options: "rmA"},
+--{trigger: "\\\\(${GREEK})\\.,", replacement: "\\boldsymbol{\\[[0]]}", options: "rmA"},
+--
+--{trigger: "\\\\(${TRIG}|${SYMBOL}|${SHORT_SYMBOL})(\\d)", replacement: "\\[[0]] [[1]]", options: "rmA"}, // Stop unvanted subscripts
+--
+--// THE MOST ANNOYING SUBSCRIPT
+--{trigger: "([A-Za-z])(\\d)", replacement: "[[0]]_{[[1]]}", options: "rmA", description: "Auto letter subscript", priority: -1},
+--{trigger: "\\hat{([A-Za-z])}(\\d)", replacement: "hat{[[0]]}_{[[1]]}", options: "rmA"},
+--{trigger: "\\\\mathbf{([A-Za-z])}(\\d)", replacement: "\\mathbf{[[0]]}_{[[1]]}", options: "rmA"},
+--{trigger: "\\\\vec{([A-Za-z])}(\\d)", replacement: "\\vec{[[0]]}_{[[1]]}", options: "rmA"},
+--
+--// Letters
+--{trigger: "mcal", replacement: "\\mathcal{$0}$1", options: "mA"},
+--{trigger: "mbb", replacement: "\\mathbb{$0}$1", options: "mA"},
+--{trigger: "ell", replacement: "\\ell", options: "mA"},
+--
+--{trigger: "(H|L|A)\\1{1}", replacement: "\\mathcal{[[0]]}", options: "rmA"},
+--{trigger: "(C|R|Q|Z|N|I)\\1{1}", replacement: "\\mathbb{[[0]]}", options: "rmA"},
+--{trigger: "(A|B)\\1{1}", replacement: "\\mathcal{[[0]]}", options: "rmA"},

@@ -100,6 +100,8 @@ return {
 				-- vtsls = {}, -- when tsserver doesn't work
 				cssls = {},
 				html = {},
+				texlab = {},
+				pyright = {},
 
 				lua_ls = {
 					settings = {

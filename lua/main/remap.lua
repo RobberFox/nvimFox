@@ -2,6 +2,8 @@ local map = require('langmapper').map
 -- 3 ways to refer to command-line commands: "<cmd>commandhere", ":commandhere" vim.cmd.commandhere"
 -- map("n", "<leader>ep", vim.cmd.Explore)
 
+map("n", "v$", "vg_")
+
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 

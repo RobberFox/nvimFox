@@ -14,7 +14,10 @@ return {
 
 			ls.config.setup({ enable_autosnippets = true })
 
-			map("n", "<leader>ls", "<cmd>source ~/.config/nvim/lua/snippets/all.lua<CR>")
+			map("n", "<leader>ls", function()
+				require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/lua/snippets/"})
+				vim.notify("Reloaded snippets.")
+			end)
 
 			map({"i", "s"}, "<Tab>", function()
 				if ls.expand_or_locally_jumpable() then
@@ -34,7 +37,7 @@ return {
 				end
 			end, {silent = true})
 
-			require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets/"})
+			require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/lua/snippets/"})
 		end
 	},
 }

@@ -2,7 +2,7 @@ vim.schedule(function() -- Schedule the setting after `UiEnter` because it can i
 	vim.opt.clipboard = "unnamedplus"
 end)
 
-vim.opt.selection = "old"
+--vim.opt.selection = "old"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
