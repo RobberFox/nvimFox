@@ -19,7 +19,7 @@ map("n", "N", "Nzzzv")
 map("x", "<leader>p", "\"_dP")
 
 map("n", "<Esc>", vim.cmd.nohlsearch)
-map("n", "Q", "<nop>")
+--map("n", "Q", "<nop>")
 map("n", "<S-CR>", "<nop>")
 
 -- See: `:help quickfix`

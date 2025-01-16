@@ -38,3 +38,5 @@ require("lazy").setup({
 })
 
 require("main.remap") -- in the end, because I need `langmapper` to load
+
+local snug_text = require("function.enlarge_brackets")

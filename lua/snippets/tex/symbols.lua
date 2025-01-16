@@ -1,4 +1,4 @@
-local math = require("snippets.helper_functions")
+local math = require("function.mathzone")
 
 local symbols = {
 	{"\"a", "\\alpha"},
@@ -114,6 +114,11 @@ local symbols = {
 	{"!E", "\\nexists"},
 	{"`\\", "\\setminus"},
 	{"`|", "\\mid"},
+
+	-- Operations and functions
+	{"arg", "\\arg"},
+	{"det", "\\det"},
+	{"ell", "\\ell"},
 }
 
 local mysnips = {}
@@ -123,5 +128,11 @@ for index = 1, #symbols, 1 do
 		t(symbols[index][2]),
 	}, { condition = math })
 end
+
+-- More complex
+mysnips[#mysnips+1] = s({ trig="set", wordTrig=false, snippetType="autosnippet" }, fmta([[{<>}<>]],
+{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="trace", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathrm{Tr}(<>)<>]],
+{ i(1), i(2) }), { condition = math })
 
 return mysnips

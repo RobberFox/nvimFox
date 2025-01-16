@@ -12,16 +12,26 @@ return {
 			local ls = require("luasnip")
 			local map = require('langmapper').map
 
-			ls.config.setup({ enable_autosnippets = true })
+			ls.setup({
+				enable_autosnippets = true,
+				store_selection_keys="<Tab>"
+			})
 
 			map("n", "<leader>ls", function()
 				require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/lua/snippets/"})
 				vim.notify("Reloaded snippets.")
 			end)
 
+			map({"i", "s"}, "<A-y>", function()
+				if ls.expandable() then
+					ls.expand()
+				else
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+				end
+			end, {silent = true})
 			map({"i", "s"}, "<Tab>", function()
-				if ls.expand_or_locally_jumpable() then
-					ls.expand_or_jump()
+				if ls.locally_jumpable(1) then
+					ls.jump(1)
 				else
 					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
 				end
