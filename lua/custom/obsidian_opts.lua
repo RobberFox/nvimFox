@@ -88,6 +88,7 @@ return {
 
 	picker = {
 		name = "fzf-lua",
+
 		--mappings = {
 		--	new = "<C-x>",
 		--	insert_link = "<C-l>",

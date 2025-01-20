@@ -7,8 +7,8 @@ require("main.options")
 require("main.autocommand")
 -- `custom/` is for plugins that I configure in a separate file, then refer to them in the plugin spec
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -39,4 +39,6 @@ require("lazy").setup({
 
 require("main.remap") -- in the end, because I need `langmapper` to load
 
-local snug_text = require("function.enlarge_brackets")
+print(vim.fn.search("?>[", "b"))
+
+vim.keymap.set("n", "<F4>", function() print(vim.fn.search("^>.*[.*]-", "b")) end)

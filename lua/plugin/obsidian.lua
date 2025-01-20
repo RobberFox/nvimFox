@@ -3,7 +3,10 @@ return {
 		"epwalsh/obsidian.nvim",
 		version = "*",  -- recommended, use latest release instead of latest commit
 		lazy = true,
-		ft = "markdown",
+		event = {
+			"BufReadPre "..vim.fn.expand("~").."/stellardriven/**.md",
+			"BufNewFile "..vim.fn.expand("~").."/stellardriven/**.md",
+		},
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
@@ -18,8 +21,8 @@ return {
 		"oflisback/obsidian-bridge.nvim",
 		lazy = true,
 		event = {
-			"BufReadPre *.md",
-			"BufNewFile *.md",
+			"BufReadPre "..vim.fn.expand("~").."/stellardriven/**.md",
+			"BufNewFile "..vim.fn.expand("~").."/stellardriven/**.md",
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",

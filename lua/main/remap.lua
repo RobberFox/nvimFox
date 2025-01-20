@@ -1,4 +1,4 @@
-local map = require('langmapper').map
+local map = require("langmapper").map
 -- 3 ways to refer to command-line commands: "<cmd>commandhere", ":commandhere" vim.cmd.commandhere"
 -- map("n", "<leader>ep", vim.cmd.Explore)
 

@@ -6,6 +6,23 @@ local map = require("langmapper").map
 map("n", "q", "<nop>")
 map("n", "<leader>q", "q", { noremap = true })
 
+map("n", "<leader>tc", function()
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	vim.fn.search("^>[", "b")
+
+	local line = vim.fn.getline(vim.fn.line("."))
+	local callout = line:match("^>%[%!%S*]")
+	local result = line:match("^>%[%!%S*]%-")
+
+	if (result == nil) then
+		line = line:gsub("^>%[%!%S*]", callout.."-")
+	else
+		line = line:gsub("^>%[%!%S*]%-", callout)
+	end
+
+	vim.fn.setline(".", line)
+	vim.api.nvim_win_set_cursor(0, cursor)
+end)
 
 map({"n", "i"}, "<A-g>", "<Esc>i```<Enter>```<Enter><Esc>2kA")
 map("v", "<A-g>", "c```<Enter>```<Esc>kpkA")
@@ -46,10 +63,10 @@ map({"n", "i"}, "<A-k>", "<cmd>ObsidianTOC<CR>")
 
 vim.opt.linebreak = true
 
---vim.api.nvim_set_hl(0, 'Normal', { fg = "#ffffff", bg = "#333333" })
---vim.api.nvim_set_hl(0, 'Comment', { fg = "#111111", bold = true })
---vim.api.nvim_set_hl(0, 'Error', { fg = "#ffffff", undercurl = true })
---vim.api.nvim_set_hl(0, 'Cursor', { reverse = true })
+--vim.api.nvim_set_hl(0, "Normal", { fg = "#ffffff", bg = "#333333" })
+--vim.api.nvim_set_hl(0, "Comment", { fg = "#111111", bold = true })
+--vim.api.nvim_set_hl(0, "Error", { fg = "#ffffff", undercurl = true })
+--vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
 
 --black "#222436"
 --red "#ff757f"
@@ -71,3 +88,9 @@ vim.api.nvim_set_hl(0, "@markup.italic.markdown_inline", { fg = "#c3e88d" })
 vim.api.nvim_set_hl(0, "@markup.strikethrough.markdown_inline", { fg = "#82aaff" })
 
 --vim.api.nvim_buf_add_highlight(0, 0, "markdownH3", 2, 0, -1)
+
+require("fzf-lua").setup {
+	files = {
+		formatter = "path.filename_first"
+	},
+}

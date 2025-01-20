@@ -10,7 +10,7 @@ return {
 
 		config = function()
 			local ls = require("luasnip")
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 
 			ls.setup({
 				enable_autosnippets = true,
@@ -22,7 +22,7 @@ return {
 				vim.notify("Reloaded snippets.")
 			end)
 
-			map({"i", "s"}, "<A-y>", function()
+			map({"i", "s"}, "<C-y>", function()
 				if ls.expandable() then
 					ls.expand()
 				else

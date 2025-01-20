@@ -27,7 +27,7 @@ cmp.setup {
 			group_index = 0, -- To skip loading LuaLS completions (as lazydev recommends)
 		},
 		{ name = "nvim_lsp" },
-		--{ name = "luasnip" },
+		{ name = "luasnip" },
 		{ name = "path" },
 	},
 }

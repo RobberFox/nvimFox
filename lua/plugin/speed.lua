@@ -17,7 +17,7 @@ return {
 				},
 			})
 
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 
 			map("n", "<leader>a", function() harpoon:list():add() end)
 			map({"n"}, "<leader>h", function() harpoon.ui:toggle_quick_menu((harpoon:list()), { border = "rounded", title_pos = "center" }) end)
@@ -36,14 +36,14 @@ return {
 	},
 
 	{
-		'tpope/vim-eunuch',
+		"tpope/vim-eunuch",
 	},
 
 	{
 		"mbbill/undotree",
 
 		config = function()
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 
 			map("n", "<leader>u", vim.cmd.UndotreeToggle)
 		end,
@@ -60,7 +60,7 @@ return {
 		},
 
 		config = function()
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 			map({"n", "i"}, "<A-h>", "<cmd>Neotree toggle=true<CR>" )
 
 			local toggle_autoclose = true

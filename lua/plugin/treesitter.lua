@@ -20,7 +20,7 @@ return {
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 
-			require('vim.treesitter.query').set( 'markdown', -- Don't conceal code blocks
+			require("vim.treesitter.query").set( "markdown", -- Don't conceal code blocks
 			'highlights',
 			[[
 			;From MDeiml/tree-sitter-markdown

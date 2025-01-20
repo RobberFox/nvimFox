@@ -14,7 +14,7 @@ return {
 	{
 		"tpope/vim-fugitive",
 		config = function()
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 
 			map("n", "<leader>gs", vim.cmd.Git)
 		end,

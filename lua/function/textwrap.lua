@@ -9,10 +9,10 @@ function M.full(key, left, right, back)
 	end
 
 	map("n", key, function()
-		local col = vim.fn.col('.') -- LMAO, literally the only difference
+		local col = vim.fn.col(".") -- LMAO, literally the only difference
 		local line = vim.api.nvim_get_current_line()
 
-		if line:sub(col, col):match('%s') or (line == nil or line == '') then
+		if line:sub(col, col):match("%s") or (line == nil or line == "") then
 			return "<Esc>a"..left..right..("<Left>"):rep(step_back).."<Esc>"
 		elseif line:match("^>+") then
 			local shift = line:match("^>+")
@@ -23,10 +23,10 @@ function M.full(key, left, right, back)
 	end, { expr = true })
 
 	map("i", key, function()
-		local col = vim.fn.col('.') - 1 -- LMAO, literally the only difference
+		local col = vim.fn.col(".") - 1 -- LMAO, literally the only difference
 		local line = vim.api.nvim_get_current_line()
 
-		if line:sub(col, col):match('%s') or (line == nil or line == '') or (line:match("^>+$")) then
+		if line:sub(col, col):match("%s") or (line == nil or line == "") or (line:match("^>+$")) then
 			return "<Esc>a"..left..right..("<Left>"):rep(step_back)
 		elseif line:match("^>+") then
 			local shift = line:match("^>+")

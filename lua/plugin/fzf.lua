@@ -3,10 +3,14 @@ return {
 		"ibhagwan/fzf-lua",
 
 		config = function()
-			require("fzf-lua").setup({})
+			require("fzf-lua").setup {
+				fzf_colors = {
+					["gutter"] = "-1"
+				}
+			}
 
 			local fzf = require("fzf-lua")
-			local map = require('langmapper').map
+			local map = require("langmapper").map
 
 			map("n", "<leader>sh", fzf.helptags)
 			map("n", "<leader>sk", fzf.keymaps)
