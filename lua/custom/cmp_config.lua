@@ -1,6 +1,19 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+local map = require("langmapper.utils")
+local cmp_mappings = map.trans_dict({
+	["<Down>"] = cmp.mapping.select_next_item(),
+	["<Up>"] = cmp.mapping.select_prev_item(),
+
+	["<C-b>"] = cmp.mapping.scroll_docs(-8),
+	["<C-f>"] = cmp.mapping.scroll_docs(8),
+
+	["<C-y>"] = cmp.mapping.confirm { select = true },
+	["<C-Space>"] = cmp.mapping.complete {},
+	-- Advanced Luasnip keymaps: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+})
+
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -10,17 +23,8 @@ cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert" },
 
 	-- See `:help ins-completion`
-	mapping = {
-		["<Down>"] = cmp.mapping.select_next_item(),
-		["<Up>"] = cmp.mapping.select_prev_item(),
+	mapping = cmp_mappings,
 
-		["<C-b>"] = cmp.mapping.scroll_docs(-8),
-		["<C-f>"] = cmp.mapping.scroll_docs(8),
-
-		["<C-y>"] = cmp.mapping.confirm { select = true },
-		["<C-Space>"] = cmp.mapping.complete {},
-		-- Advanced Luasnip keymaps: https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-	},
 	sources = {
 		{
 			name = "lazydev",
@@ -31,4 +35,3 @@ cmp.setup {
 		{ name = "path" },
 	},
 }
-

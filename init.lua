@@ -39,6 +39,7 @@ require("lazy").setup({
 
 require("main.remap") -- in the end, because I need `langmapper` to load
 
-print(vim.fn.search("?>[", "b"))
-
-vim.keymap.set("n", "<F4>", function() print(vim.fn.search("^>.*[.*]-", "b")) end)
+vim.keymap.set("n", "<F6>", function()
+	local file = vim.fn.expand("%:t")
+	vim.cmd("!echo -n ".."\\![["..file.."]]".." | xclip -selection c")
+end)

@@ -2,8 +2,10 @@ local math = require("function.mathzone")
 
 local mysnips = {}
 
-mysnips[#mysnips+1] = ms({ common = { snippetType = "autosnippet" }, "mk", "ьл" }, fmta([[$<>$<>]], { i(1), i(2) }))
-mysnips[#mysnips+1] = ms({ common = { snippetType = "autosnippet" }, "dm", "вь" }, fmta([[
+mysnips[#mysnips+1] = s({ trig = "mk", regTrig=true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(2) }))
+mysnips[#mysnips+1] = s({ trig = "([%s%.,;:\"])ьл", regTrig=true, snippetType = "autosnippet" }, fmta([[<>$<>$<>]],
+{ f(function(args, snip) return snip.captures[1] end, {}), i(1), i(2) }))
+mysnips[#mysnips+1] = ms({ common = { regTrig=true, snippetType = "autosnippet" }, "^dm", "^вь" }, fmta([[
 \begin{equation}
 <>
 \end{equation}

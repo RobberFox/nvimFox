@@ -49,10 +49,6 @@ function math()
 	end
 end
 
-vim.keymap.set("n", "<leader>q", function()
-	vim.notify(tostring(math()))
-end)
-
 local symbols = {
 	{"\"a", "\\alpha"},
 	{"\"b", "\\beta"},
@@ -349,8 +345,10 @@ mysnips[#mysnips+1] = s({ trig = "lr.", wordTrig=false, snippetType="autosnippet
 \right.
 ]], { i(1) }), { condition = math })
 
-mysnips[#mysnips+1] = ms({ common = { snippetType = "autosnippet" }, "mk", "ьл" }, fmta([[$<>$<>]], { i(1), i(2) }))
-mysnips[#mysnips+1] = ms({ common = { snippetType = "autosnippet" }, "dm", "вь" }, fmta([[
+mysnips[#mysnips+1] = s({ trig = "mk", regTrig=true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(2) }))
+mysnips[#mysnips+1] = s({ trig = "([%s%.,;:\"])ьл", regTrig=true, snippetType = "autosnippet" }, fmta([[<>$<>$<>]],
+{ f(function(args, snip) return snip.captures[1] end, {}), i(1), i(2) }))
+mysnips[#mysnips+1] = ms({ common = { regTrig=true, snippetType = "autosnippet" }, "^dm", "^вь" }, fmta([[
 $$
 <>
 $$
