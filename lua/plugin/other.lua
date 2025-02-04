@@ -12,8 +12,15 @@ return {
 	{
 		"itchyny/calendar.vim",
 		keys = {
-			{ "<leader>ca", "<cmd>Calendar -first_day=monday<cr>"},
+			{ "<leader>cl", "<cmd>Calendar -first_day=monday<cr>"},
 			{ "<localleader>y", "<cmd>Calendar -first_day=monday -view=year<cr>"},
 		},
 	},
+	--{
+	--	'Kicamon/markdown-table-mode.nvim',
+	--	ft = "markdown",
+	--	config = function()
+	--		require('markdown-table-mode').setup()
+	--	end
+	--}
 }

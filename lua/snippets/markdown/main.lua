@@ -11,7 +11,7 @@ return {
 		f(function(args, snip) return snip.captures[1]..">" end, {}),
 	}),
 
-	s({ trig="Ъ", snippetType="autosnippet" }, {
+	s({ trig="Ъ", wordTrig=false, snippetType="autosnippet" }, {
 		t("|")
 	}),
 	s({ trig="^Ю", regTrig=true, snippetType="autosnippet" }, {

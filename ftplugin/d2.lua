@@ -32,5 +32,4 @@ vim.keymap.set("n", "<F4>", function()
 	else
 		vim.notify("Filename exists!")
 	end
-
 end)
