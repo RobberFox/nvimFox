@@ -358,7 +358,7 @@ mysnips[#mysnips+1] = s({ trig = "beg", wordTrig=false, snippetType = "autosnipp
 \begin{<>}
 <>
 \end{<>}
-]], { i(1), i(2), rep(1) }))
+]], { i(1), i(2), rep(1) }), { condition = math })
 
 mysnips[#mysnips+1] = s({ trig = "aram", wordTrig=false, snippetType = "autosnippet" }, fmta([[
 \left( \begin{array}{<>}
