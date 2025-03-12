@@ -8,16 +8,16 @@ map("n", "<leader>q", "q", { noremap = true })
 
 map("n", "<leader>tc", function()
 	local cursor = vim.api.nvim_win_get_cursor(0)
-	vim.fn.search("^>[", "b")
+	vim.fn.search("^>*[", "b")
 
 	local line = vim.fn.getline(vim.fn.line("."))
-	local callout = line:match("^>%[%!%S*]")
-	local result = line:match("^>%[%!%S*]%-")
+	local callout = line:match("^>*%[%!%S*]")
+	local result = line:match("^>*%[%!%S*]%-")
 
 	if (result == nil) then
-		line = line:gsub("^>%[%!%S*]", callout.."-")
+		line = line:gsub("^>*%[%!%S*]", callout.."-")
 	else
-		line = line:gsub("^>%[%!%S*]%-", callout)
+		line = line:gsub("^>*%[%!%S*]%-", callout)
 	end
 
 	vim.fn.setline(".", line)

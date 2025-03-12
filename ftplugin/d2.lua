@@ -30,6 +30,7 @@ vim.keymap.set("n", "<F4>", function()
 	if vim.fn.filereadable(file_svg) == 0 then
 		vim.cmd(kitty_execute(script_dir.."watch.sh "..file_d2.." "..file_svg))
 	else
-		vim.notify("Filename exists!")
+		vim.notify("Filename exists! Overriding.")
+		vim.cmd(kitty_execute(script_dir.."watch.sh "..file_d2.." "..file_svg))
 	end
 end)
