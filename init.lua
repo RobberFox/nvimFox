@@ -38,8 +38,3 @@ require("lazy").setup({
 })
 
 require("main.remap") -- in the end, because I need `langmapper` to load
-
-vim.keymap.set("n", "<F6>", function()
-	local file = vim.fn.expand("%:t")
-	vim.cmd("!echo -n ".."\\![["..file.."]]".." | xclip -selection c")
-end)

@@ -10,5 +10,5 @@ local sources = cmp.get_config().sources
 cmp.setup {
 	completion = {
 		autocomplete = false
-	}
+	},
 }
