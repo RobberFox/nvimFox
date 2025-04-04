@@ -396,8 +396,9 @@ local TRIG = { "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "arccot
 
 -- Fraction
 -- TODO: Fraction with parentheses `(1 + 2)` -> `\frac{1 + 2}{}`
-mysnips[#mysnips+1] = s( { trig= "((\\d+)|(\\d*)(\\\\)?([A-Za-z]+)((\\^|_)(\\{\\d+\\}|\\d))*)\\/", regTrig=true, wordTrig=false, trigEngine="ecma", snippetType="autosnippet" }, fmta([[\frac{<>}{<>}<>]],
+mysnips[#mysnips+1] = s( { trig= "(%d)/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{<>}{<>}<>]],
 { f(function(args, snip) return snip.captures[1] end, {}), i(1), i(2) }), { condition = math })
+-- WARNING: crashes with non-latin characters
 
 -- Auto enlarge brackets
 
