@@ -3,8 +3,9 @@ local function snug_text()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 
 	local braces = {
-		{"(", ")"},
-		{"[", "]"},
+		{"%(", "%)"},
+		{"%[", "%]"},
+		{"%|", "%|"},
 		{"\\{", "\\}"},
 		{"\\langle", "\\rangle"},
 		{"\\lvert", "\\rvert"},

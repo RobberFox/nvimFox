@@ -115,8 +115,9 @@ return {
 								disable = { "missing-fields", "undefined-global", "lowercase-global" } ,
 							},
 							workspace = {
+								checkThirdParty = false,
 								library = { -- Makes server aware of Neovim runtime files, awesome libraries
-									vim.api.nvim_get_runtime_file("", true),
+									vim.env.VIMRUNTIME,
 									{ "/usr/share/awesome/lib/" },
 								},
 							},
@@ -127,7 +128,6 @@ return {
 					},
 				},
 			}
-
 
 			--  NOTE: ### LSP Manager ### -- Place to add tools that you want Mason to install
 			require("mason").setup()
