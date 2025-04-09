@@ -49,37 +49,6 @@ function math()
 	end
 end
 
-local breaking_chars = "%$%+%-=;:<>"
-
-function unclosed_brace_position(str)
-	local depth = 0
-	for i = str:len(), 1, -1 do
-		char = str:sub(i, i)
-
-		if char == "}" then
-			depth = depth + 1
-		elseif char == "{" then
-			depth = depth - 1
-		end
-
-		if depth < 0 then
-			return i
-		end
-	end
-end
-
-function auto_fraction(str)
-	local stripped = str:sub(1, -2)
-	local brace_pos = unclosed_brace_position(stripped)
-	char_pos = stripped:find("[^"..breaking_chars.."]*$") - 1
-
-	if brace_pos ~= nil and brace_pos > char_pos then
-		return stripped:sub(1, brace_pos).."\\frac{"..stripped:sub(brace_pos+1, -1).."}"
-	else
-		return stripped:sub(1,char_pos).."\\frac{"..stripped:sub(char_pos+1, -1).."}"
-	end
-end
-
 local symbols = {
 	{"\"a", "\\alpha"},
 	{"\"b", "\\beta"},
@@ -428,12 +397,10 @@ local TRIG = { "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "arccot
 -- Fraction
 -- TODO: Fraction with parentheses `(1 + 2)` -> `\frac{1 + 2}{}`
 
-mysnips[#mysnips+1] = s( { trig= "%S/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{<>}{<>}<>]],
-{ f(function(args, snip) return snip.captures[1] end, {}), i(1), i(2) }), {
-condition = function(line_to_cursor)
-	vim.notify(auto_fraction(line_to_cursor))
-	return math()
-end})
+local auto_fraction = require("function.autofraction")
+
+mysnips[#mysnips+1] = s( { trig= "%S/", regTrig=true, wordTrig=false, snippetType="autosnippet", resolveExpandParams=function(_snip, line_to_cursor, matched, _captures) }, fmta([[\frac{<>}{<>}<>]],
+{ f(function(args, snip, line_to_cursor) return auto_fraction(line_to_cursor) end, {}), i(1), i(2) }), { condition = function() return math() end})
 
 -- Auto enlarge brackets
 

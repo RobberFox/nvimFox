@@ -15,6 +15,7 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
+
 -- Sigma yank-substitute remap
 map("x", "<leader>p", "\"_dP")
 

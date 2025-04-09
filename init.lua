@@ -2,6 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+
 -- Vanilla nvim confiuration
 require("main.options")
 require("main.autocommand")
@@ -36,5 +37,7 @@ require("lazy").setup({
 	install = { colorscheme = { "tokyonight-night" } },
 	checker = { enabled = false }, -- automatically check for plugin updates
 })
+
+vim.keymap.set({"n", "i"}, "<F10>", function() pcall(ts.get_parser, buf, "latex") end)
 
 require("main.remap") -- in the end, because I need `langmapper` to load
