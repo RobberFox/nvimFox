@@ -41,7 +41,7 @@ function equation_bounds(str)
 end
 
 function auto_fraction(str)
-	local stripped = str:len() - 1 -- since don't need the trailing `/`
+	local stripped = str:len() -- since don't need the trailing `/`
 	local to = stripped
 	local equation_start = equation_bounds(str)
 
@@ -81,9 +81,11 @@ function auto_fraction(str)
 
 	if numerator:sub(1, 1) == "(" and numerator:sub(-1, -1) == ")" then
 		numerator = numerator:sub(2, -2)
+		start = start + 1
+		to = to - 1
 	end
 
-	return numerator
+	return start, to
 end
 
 return auto_fraction
