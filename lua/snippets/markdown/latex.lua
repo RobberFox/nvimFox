@@ -399,18 +399,17 @@ local TRIG = { "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "arccot
 
 local auto_fraction = require("function.autofraction")
 
---mysnips[#mysnips+1] = s( { trig= "(%S)/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[<>{<>}<>]],
---{ f(function(args, snip)
---	local line = vim.fn.getline(vim.fn.line("."))
---	local cursor = vim.api.nvim_win_get_cursor(0)
---	local line_to_cursor = line:sub(1, cursor[2])..snip.captures[1]
---	local start, to = auto_fraction(line_to_cursor)
---	vim.fn.setline(".", "")
---
---	vim.notify(line:sub(start,start)..line:sub(to,to))
---
---	return line:sub(1, start).."\\frac{"..line:sub(start, to).."}"..line:sub(cursor[2], -1)
---end, {}), i(1), i(2) }), { condition = function() return math() end})
+mysnips[#mysnips+1] = s( { trig= "(%S+)/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[<>{<>}]],
+{ f(function(args, snip)
+	local cursor_pos, _ = snip.snippet:get_buf_position()
+	local line_to_snip = vim.api.nvim_buf_get_text(0, cursor_pos[1], 0, cursor_pos[1], cursor_pos[2], {})
+	local line_to_cursor = line_to_snip[1]..snip.captures[1]
+
+	local start, to = auto_fraction(line_to_cursor)
+	vim.notify(line_to_cursor)
+
+	return line_to_cursor:sub(1, start-1).."\\frac{"..line_to_cursor:sub(start, to).."}"
+end, {}), i(1) }), { condition = function() return math() end})
 
 -- Auto enlarge brackets
 
