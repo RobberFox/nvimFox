@@ -38,6 +38,4 @@ require("lazy").setup({
 	checker = { enabled = false }, -- automatically check for plugin updates
 })
 
-vim.keymap.set({"n", "i"}, "<F10>", function() pcall(ts.get_parser, buf, "latex") end)
-
 require("main.remap") -- in the end, because I need `langmapper` to load

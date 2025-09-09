@@ -179,37 +179,37 @@ for index = 1, #symbols, 1 do
 end
 
 -- More complex
-mysnips[#mysnips+1] = s({ trig="set", wordTrig=false, snippetType="autosnippet" }, fmta([[\{<>\}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="trace", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathrm{Tr}(<>)<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="set", wordTrig=false, snippetType="autosnippet" }, fmta([[\{<>\}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="trace", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathrm{Tr}(<>)]],
+{ i(1) }), { condition = math })
 
 -- Integrals
 for index = 1, 3, 1 do
 	mysnips[#mysnips+1] = s({ trig=("i"):rep(index).."nt", wordTrig=false, snippetType="autosnippet", priority = 100 }, fmta("\\"..("i"):rep(index).."nt_{<>}^{<>} <> \\, \\mathrm{d}<> <>",
-	{ i(1, "0"), i(2, "\\infty"), i(3), i(4, "x"), i(5) }), { condition = math })
+	{ i(1, "0"), i(2, "\\infty"), i(3), i(4, "x"), i(0) }), { condition = math })
 end
 
-mysnips[#mysnips+1] = s( { trig="lint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int_{<>} <> \, \mathrm{d}<><>]],
-{ i(1, "0"), i(2), i(3, "x"), i(4) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="oint", wordTrig=false, snippetType="autosnippet" }, fmta([[\oint_{<>}^{<>} <> \, \mathrm{d}<><>]],
-{ i(1, "0"), i(2, "\\infty"), i(3), i(4, "x"), i(5) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="loint", wordTrig=false, snippetType="autosnippet" }, fmta([[\oint_{<>} <> \, \mathrm{d}<><>]],
-{ i(1, "0"), i(2), i(3, "x"), i(4) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="lint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int_{<>} <> \, \mathrm{d}<><>]],
-{ i(1, "0"), i(2), i(3, "x"), i(4) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="dint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int <> \, \mathrm{d}<><>]],
-{ i(1), i(2, "x"), i(3) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="lint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int_{<>} <> \, \mathrm{d}<>]],
+{ i(1, "0"), i(2), i(3, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="oint", wordTrig=false, snippetType="autosnippet" }, fmta([[\oint_{<>}^{<>} <> \, \mathrm{d}<>]],
+{ i(1, "0"), i(2, "\\infty"), i(3), i(4, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="loint", wordTrig=false, snippetType="autosnippet" }, fmta([[\oint_{<>} <> \, \mathrm{d}<>]],
+{ i(1, "0"), i(2), i(3, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="lint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int_{<>} <> \, \mathrm{d}<>]],
+{ i(1, "0"), i(2), i(3, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="dint", wordTrig=false, snippetType="autosnippet" }, fmta([[\int <> \, \mathrm{d}<>]],
+{ i(1), i(2, "x") }), { condition = math })
 
 -- Derivatives
-mysnips[#mysnips+1] = s( { trig="par", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial <>}{\partial <>}<>]],
-{ i(1, "y"), i(2, "x"), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="pa2", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{2} <>}{\partial <>^{2}}<>]],
-{ i(1, "y"), i(2, "x"), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="pa3", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{3} <>}{\partial <>^{3}}<>]],
-{ i(1, "y"), i(2, "x"), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="pa3", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{3} <>}{\partial <>^{3}}<>]],
-{ i(1, "y"), i(2, "x"), i(3) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="par", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial <>}{\partial <>}]],
+{ i(1, "y"), i(2, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="pa2", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{2} <>}{\partial <>^{2}}]],
+{ i(1, "y"), i(2, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="pa3", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{3} <>}{\partial <>^{3}}]],
+{ i(1, "y"), i(2, "x") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="pa3", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{\partial^{3} <>}{\partial <>^{3}}]],
+{ i(1, "y"), i(2, "x") }), { condition = math })
 
 mysnips[#mysnips+1] = s( { trig="pa([A-Za-z])([A-Za-z])", regTrig=true }, fmta([[\frac{\partial <>}{\partial <>}]],
 { f(function(args, snip) return snip.captures[1] end, {}), f(function(args, snip) return snip.captures[2] end, {}) }), { condition = math })
@@ -235,58 +235,58 @@ mysnips[#mysnips+1] = s({ trig="arta", wordTrig=false, snippetType="autosnippet"
 mysnips[#mysnips+1] = s({ trig="arct", wordTrig=false, snippetType="autosnippet" }, fmta("\\arccot", {}), { condition = math })
 
 -- Mathematical operations
-mysnips[#mysnips+1] = s( { trig="sum", wordTrig=false, snippetType="autosnippet" }, fmta([[\sum_{<>}^{<>}<>]],
-{ i(1, "n=1"), i(2, "\\infty"), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="([a-z])sum", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[\sum_{<>=1}^{<>} <>]],
-{ f(function(args, snip) return snip.captures[1] end, {}), i(2, "\\infty"), i(3) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="sum", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[\sum_{<>}^{<>}]],
+{ i(1, "n=1"), i(2, "\\infty") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="([a-z])sum", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[\sum_{<>=1}^{<>}]],
+{ f(function(args, snip) return snip.captures[1] end, {}), i(1, "\\infty") }), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="prod", wordTrig=false, snippetType="autosnippet" }, fmta([[\prod_{<>}^{<>}<>]],
-{ i(1, "n=1"), i(2, "\\infty"), i(3) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="prod", wordTrig=false, snippetType="autosnippet" }, fmta([[\prod_{<>}^{<>}]],
+{ i(1, "n=1"), i(2, "\\infty") }), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="log", wordTrig=false, snippetType="autosnippet" }, fmta([[\log_{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="log", wordTrig=false, snippetType="autosnippet" }, fmta([[\log_{<>}]],
+{ i(1) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="ln", wordTrig=false, snippetType="autosnippet" }, t("\\ln"), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="lim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim_{<> \to <>}<>]],
-{ i(1, "x"), i(2, "\\infty"), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="ilim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim\limits_{<> \to <>}<>]],
-{ i(1, "x"), i(2, "\\infty"), i(3) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="lim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim_{<> \to <>}]],
+{ i(1, "x"), i(2, "\\infty") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="ilim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim\limits_{<> \to <>}]],
+{ i(1, "x"), i(2, "\\infty") }), { condition = math })
 for _,letter in ipairs({ "n", "x" }) do
-	mysnips[#mysnips+1] = s( { trig=letter.."im", wordTrig=false, snippetType="autosnippet" }, fmta("\\lim_{"..letter.." \\to <>}<>",
-	{ i(1, "\\infty"), i(2) }), { condition = math })
-	mysnips[#mysnips+1] = s( { trig="i"..letter.."im", wordTrig=false, snippetType="autosnippet" }, fmta("\\lim\\limits_{"..letter.." \\to <>}<>",
-	{ i(1, "\\infty"), i(2) }), { condition = math })
+	mysnips[#mysnips+1] = s( { trig=letter.."im", wordTrig=false, snippetType="autosnippet" }, fmta("\\lim_{"..letter.." \\to <>}",
+	{ i(1, "\\infty") }), { condition = math })
+	mysnips[#mysnips+1] = s( { trig="i"..letter.."im", wordTrig=false, snippetType="autosnippet" }, fmta("\\lim\\limits_{"..letter.." \\to <>}",
+	{ i(1, "\\infty") }), { condition = math })
 end
-mysnips[#mysnips+1] = s( { trig="dlim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim_{\Delta x \to 0} \frac{<>}{\Delta x}<>]],
-{ i(1, "\\Delta y"), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="idim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim\limits_{\Delta x \to 0} \frac{<>}{\Delta x}<>]],
-{ i(1, "\\Delta y"), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="dlim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim_{\Delta x \to 0} \frac{<>}{\Delta x}]],
+{ i(1, "\\Delta y") }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="idim", wordTrig=false, snippetType="autosnippet" }, fmta([[\lim\limits_{\Delta x \to 0} \frac{<>}{\Delta x}]],
+{ i(1, "\\Delta y") }), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="tayl", wordTrig=false, snippetType="autosnippet" }, fmta([[<>(<> + <>) = <>(<>) + <>'(<>)<> + <>''(<>) \frac{<>^{2}}{2!} + \dots<>]],
-{ i(1, "f"), i(2, "x"), i(3, "h"), rep(1), rep(2), rep(1), rep(2), rep(3), rep(1), rep(2), rep(3), i(4) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="tayl", wordTrig=false, snippetType="autosnippet" }, fmta([[<>(<> + <>) = <>(<>) + <>'(<>)<> + <>''(<>) \frac{<>^{2}}{2!} + \dots]],
+{ i(1, "f"), i(2, "x"), i(3, "h"), rep(1), rep(2), rep(1), rep(2), rep(3), rep(1), rep(2), rep(3) }), { condition = math })
 
 mysnips[#mysnips+1] = s( { trig="sr", wordTrig=false, snippetType="autosnippet" }, t([[^{2}]]), { condition = math })
 mysnips[#mysnips+1] = s( { trig="cb", wordTrig=false, snippetType="autosnippet" }, t([[^{3}]]), { condition = math })
 mysnips[#mysnips+1] = s( { trig="invs", wordTrig=false, snippetType="autosnippet" }, t([[^{-1}]]), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="rd", wordTrig=false, snippetType="autosnippet" }, fmta([[^{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="ee", wordTrig=false, snippetType="autosnippet" }, fmta([[e^{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="rd", wordTrig=false, snippetType="autosnippet" }, fmta([[^{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="ee", wordTrig=false, snippetType="autosnippet" }, fmta([[e^{<>}]],
+{ i(1) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="conj", wordTrig=false, snippetType="autosnippet" }, t([[^{*}]]),
 { condition = math })
-mysnips[#mysnips+1] = s( { trig="_", wordTrig=false, snippetType="autosnippet" }, fmta([[_{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="sts", wordTrig=false, snippetType="autosnippet" }, fmta([[_\mathrm{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="_", wordTrig=false, snippetType="autosnippet" }, fmta([[_{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="sts", wordTrig=false, snippetType="autosnippet" }, fmta([[_\mathrm{<>}]],
+{ i(1) }), { condition = math })
 
-mysnips[#mysnips+1] = s( { trig="sq", wordTrig=false, snippetType="autosnippet" }, fmta([[\sqrt{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="sn", wordTrig=false, snippetType="autosnippet" }, fmta([[\sqrt[<>]{<>}<>]],
+mysnips[#mysnips+1] = s( { trig="sq", wordTrig=false, snippetType="autosnippet" }, fmta([[\sqrt{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="sn", wordTrig=false, snippetType="autosnippet" }, fmta([[\sqrt[<>]{<>}]],
 
-{ i(1), i(2), i(3) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="//", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{<>}{<>}<>]],
-{ i(1), i(2), i(3) }), { condition = math })
+{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="//", wordTrig=false, snippetType="autosnippet" }, fmta([[\frac{<>}{<>}]],
+{ i(1), i(2) }), { condition = math })
 
 for _, letters in ipairs({ "f", "F", "g", "G" }) do
 	mysnips[#mysnips+1] = s({ trig=letters:rep(2), wordTrig=false, snippetType="autosnippet" }, fmta(letters.."(<>)",
@@ -295,29 +295,29 @@ end
 
 -- Letter modifications
 for _, accents in ipairs({ "bar", "hat", "vec", "dot", "ddot", "tild", "und" }) do -- TODO: Fix ddot
-	mysnips[#mysnips+1] = s({ trig=accents, wordTrig=false, snippetType="autosnippet", priority=100 }, fmta("\\"..accents.."{<>}<>",
-	{ i(1), i(2) }), { condition = math })
+	mysnips[#mysnips+1] = s({ trig=accents, wordTrig=false, snippetType="autosnippet", priority=100 }, fmta("\\"..accents.."{<>}",
+	{ i(1) }), { condition = math })
 	mysnips[#mysnips+1] = s({ trig="(%a)"..accents, wordTrig=false, regTrig=true, snippetType="autosnippet" }, fmta("\\"..accents.."{<>}",
 	{ f(function(args, snip) return snip.captures[1] end, {}) }), { condition = math })
 end
 
-mysnips[#mysnips+1] = s({ trig="wd;", wordTrig=false, snippetType="autosnippet" }, fmta([[\widehat{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s({ trig="lv;", wordTrig=false, snippetType="autosnippet" }, fmta([[\overrightarrow{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="wd;", wordTrig=false, snippetType="autosnippet" }, fmta([[\widehat{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="lv;", wordTrig=false, snippetType="autosnippet" }, fmta([[\overrightarrow{<>}]],
+{ i(1) }), { condition = math })
 
 -- Brackets
-mysnips[#mysnips+1] = s({ trig="avg", wordTrig=false, snippetType="autosnippet" }, fmta([[\langle <> \rangle<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s({ trig="norm", wordTrig=false, snippetType="autosnippet" }, fmta([[\lvert <> \rvert<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s({ trig="mod", wordTrig=false, snippetType="autosnippet" }, fmta([[|<>|<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="avg", wordTrig=false, snippetType="autosnippet" }, fmta([[\langle <> \rangle]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="norm", wordTrig=false, snippetType="autosnippet" }, fmta([[\lvert <> \rvert]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="mod", wordTrig=false, snippetType="autosnippet" }, fmta([[|<>|]],
+{ i(1) }), { condition = math })
 
-mysnips[#mysnips+1] = s({ trig="(", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[(<>)<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s({ trig="{", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="(", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[(<>)]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="{", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[{<>}]],
+{ i(1) }), { condition = math })
 
 local brackets = {
 	{ "(", "(", ")" },
@@ -330,12 +330,12 @@ local brackets = {
 }
 
 for index = 1, #brackets, 1 do
-	mysnips[#mysnips+1] = s({ trig="lr"..brackets[index][1], wordTrig=false, snippetType="autosnippet" }, fmta("\\left"..brackets[index][2].." <> ".."\\right"..brackets[index][3].." <>",
-	{ i(1), i(2)}), { condition = math })
+	mysnips[#mysnips+1] = s({ trig="lr"..brackets[index][1], wordTrig=false, snippetType="autosnippet" }, fmta("\\left"..brackets[index][2].." <> ".."\\right"..brackets[index][3],
+	{ i(1)}), { condition = math })
 end
 
-mysnips[#mysnips+1] = s({ trig="rl|", wordTrig=false, snippetType="autosnippet" }, fmta([[\left. <> \right|<>]],
-{ i(1), i(2)}), { condition = math })
+mysnips[#mysnips+1] = s({ trig="rl|", wordTrig=false, snippetType="autosnippet" }, fmta([[\left. <> \right|]],
+{ i(1)}), { condition = math })
 
 mysnips[#mysnips+1] = s({ trig = "lr.", wordTrig=false, snippetType="autosnippet" }, fmta([[
 \left[ \;
@@ -345,11 +345,12 @@ mysnips[#mysnips+1] = s({ trig = "lr.", wordTrig=false, snippetType="autosnippet
 \right.
 ]], { i(1) }), { condition = math })
 
-mysnips[#mysnips+1] = s({ trig = "mk", regTrig=true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(2) }))
-mysnips[#mysnips+1] = s({ trig = "([%s%.,;:\"])ьл", regTrig=true, snippetType = "autosnippet" }, fmta([[<>$<>$<>]],
-{ f(function(args, snip) return snip.captures[1] end, {}), i(1), i(2) }))
-mysnips[#mysnips+1] = s({ trig = "^ьл", regTrig=true, snippetType = "autosnippet" }, fmta([[$<>$<>]],
-{ i(1), i(2) }))
+mysnips[#mysnips+1] = s({ trig = "mk", regTrig=true, snippetType = "autosnippet" }, fmta([[$<>$]],
+{ i(1) }))
+mysnips[#mysnips+1] = s({ trig = "([%s%.,;:\"])ьл", regTrig=true, snippetType = "autosnippet" }, fmta([[<>$<>$]],
+{ f(function(args, snip) return snip.captures[1] end, {}), i(1) }))
+mysnips[#mysnips+1] = s({ trig = "ьл", snippetType = "autosnippet" }, fmta([[$<>$]],
+{ i(1) }), { condition = require("luasnip.extras.expand_conditions").line_begin })
 mysnips[#mysnips+1] = ms({ common = { regTrig=true, snippetType = "autosnippet" }, "^dm", "^вь" }, fmta([[
 $$
 <>
@@ -365,8 +366,7 @@ mysnips[#mysnips+1] = s({ trig = "beg", wordTrig=false, snippetType = "autosnipp
 mysnips[#mysnips+1] = s({ trig = "aram", wordTrig=false, snippetType = "autosnippet" }, fmta([[
 \left( \begin{array}{<>}
 <>
-\end{array} \right)
-]], { i(1), i(2) }), { condition = math })
+\end{array} \right) ]], { i(1), i(2) }), { condition = math })
 
 local matrices = {
 	{"pmat", "pmatrix"},
@@ -397,11 +397,11 @@ local GREEK = { "alpha", "beta", "gamma", "Gamma", "delta", "Delta", "epsilon", 
 local TRIG = { "sin", "cos", "tan", "cot", "arcsin", "arccos", "arctan", "arccot", "sinh", "cosh", "tanh", "coth" }
 
 -- Fraction
--- TODO: Fraction with parentheses `(1 + 2)` -> `\frac{1 + 2}{}`
-
 local auto_fraction = require("function.autofraction")
 
-mysnips[#mysnips+1] = s( { trig= "(%S+)/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[<>{<>}]],
+local breaking_chars = "%(%[{%$%+%-=;:<>"
+
+mysnips[#mysnips+1] = s( { trig= "(.*[^%s.."..breaking_chars.."]+)/", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[<>{<>}]],
 { f(function(args, snip)
 	local cursor_pos, _ = snip.snippet:get_buf_position()
 	local line_to_snip = vim.api.nvim_buf_get_text(0, cursor_pos[1], 0, cursor_pos[1], cursor_pos[2], {})
@@ -409,14 +409,15 @@ mysnips[#mysnips+1] = s( { trig= "(%S+)/", regTrig=true, wordTrig=false, snippet
 
 	local start, to = auto_fraction(line_to_cursor)
 
-	vim.notify(line_to_cursor)
+	vim.notify("Capture: "..snip.captures[1])
 
 	return line_to_cursor:sub(1, start-1).."\\frac{"..line_to_cursor:sub(start, to).."}"
-end, {}), i(1) }), { condition = function() return math() end})
+end, {}), i(1) }), { condition = math })
 
 -- Auto enlarge brackets
 
 local triggers = { "sum", "int", "frac", "prod", "bigcup", "bigcap" }
+
 
 -- Spacing
 for _, symbol in ipairs(SYMBOLS) do
@@ -427,8 +428,8 @@ for _, symbol in ipairs(SYMBOLS) do
 
 	mysnips[#mysnips+1] = s( { trig=symbol.." sr", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, t(symbol.."^{2}"), { condition = math })
 	mysnips[#mysnips+1] = s( { trig=symbol.." cb", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, t(symbol.."^{3}"), { condition = math })
-	mysnips[#mysnips+1] = s( { trig=symbol.." rd", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, fmta(symbol.."^{<>}<>",
-	{ i(1), i(2) }), { condition = math })
+	mysnips[#mysnips+1] = s( { trig=symbol.." rd", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, fmta(symbol.."^{<>}",
+	{ i(1) }), { condition = math })
 
 	for _, accents in ipairs({ "hat", "dot", "bar", "vec", "tild", "und" }) do
 		mysnips[#mysnips+1] = s( { trig=symbol.." "..accents, regTrig=true, wordTrig=false, snippetType="autosnippet" }, t("\\"..accents.."{"..symbol.."}"), { condition = math })
@@ -441,10 +442,10 @@ end
 
 -- Space and trigonometry
 for _, trig in ipairs(TRIG) do
-	mysnips[#mysnips+1] = s( { trig=trig.." sr", regTrig=true, wordTrig=false, snippetType="autosnippet" }, t(trig.."^{2}"), { condition = math })
-	mysnips[#mysnips+1] = s( { trig=trig.." cb", regTrig=true, wordTrig=false, snippetType="autosnippet" }, t(trig.."^{3}"), { condition = math })
-	mysnips[#mysnips+1] = s( { trig=trig.." rd", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta(trig.."^{<>}<>",
-	{ i(1), i(2) }), { condition = math })
+	mysnips[#mysnips+1] = s( { trig=trig.." sr", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, t(trig.."^{2}"), { condition = math })
+	mysnips[#mysnips+1] = s( { trig=trig.." cb", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, t(trig.."^{3}"), { condition = math })
+	mysnips[#mysnips+1] = s( { trig=trig.." rd", regTrig=true, wordTrig=false, snippetType="autosnippet", priority = 10000 }, fmta(trig.."^{<>}",
+	{ i(1) }), { condition = math })
 end
 
 for _, trig in ipairs({ "sin", "cos", "tan", "cot", "csc", "sec", "arccsc", "arcsec"}) do
@@ -493,23 +494,23 @@ mysnips[#mysnips+1] = s( { trig=";;", wordTrig=false, snippetType="autosnippet" 
 mysnips[#mysnips+1] = s( { trig=";,", wordTrig=false, snippetType="autosnippet" }, t([[;\,]]), { condition = math })
 mysnips[#mysnips+1] = s( { trig="]]", wordTrig=false, snippetType="autosnippet" }, t([[\;]]), { condition = math })
 
-mysnips[#mysnips+1] = s({ trig="hsp", wordTrig=false, snippetType="autosnippet" }, fmta([[\hspace{<>} <>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s({ trig="hsp", wordTrig=false, snippetType="autosnippet" }, fmta([[\hspace{<>}]],
+{ i(1) }), { condition = math })
 mysnips[#mysnips+1] = ms({common = { wordTrig=false, snippetType="autosnippet" }, "qp", "pq" }, fmta([[\\
 
 ]], {}), { condition = math })
 
 --Text
-mysnips[#mysnips+1] = s( { trig="text", wordTrig=false, snippetType="autosnippet" }, fmta([[\text{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="bf", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathbf{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="rm", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[\mathrm{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="mcal", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathcal{<>}<>]],
-{ i(1), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="mbb", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathbb{<>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="text", wordTrig=false, snippetType="autosnippet" }, fmta([[\text{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="bf", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathbf{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="rm", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[\mathrm{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="mcal", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathcal{<>}]],
+{ i(1) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="mbb", wordTrig=false, snippetType="autosnippet" }, fmta([[\mathbb{<>}]],
+{ i(1) }), { condition = math })
 
 -- Letters
 for _, letters in ipairs({ "H", "L", "A", "B"}) do
@@ -524,22 +525,21 @@ mysnips[#mysnips+1] = s( { trig="im", snippetType="autosnippet", priority=100 },
 
 -- Misc
 mysnips[#mysnips+1] = s( { trig="`-", wordTrig=false, snippetType="autosnippet" }, t([[\hline]]), { condition = math })
-mysnips[#mysnips+1] = s( { trig="hh", wordTrig=false, snippetType="autosnippet" }, fmta([[{\huge <>}<>]],
-{ i(1), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="hh", wordTrig=false, snippetType="autosnippet" }, fmta([[{\huge <>}]],
+{ i(1) }), { condition = math })
 
--- Fraction
+-- Visual operations
 mysnips[#mysnips+1] = s( { trig="/", regTrig=true, wordTrig=false }, fmta([[\frac{<>}{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(1) }), { condition = math })
 
--- Visual operations
 mysnips[#mysnips+1] = s( { trig="b", regTrig=true, wordTrig=false }, fmta([[\underbrace{<>}_{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(1) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="B", regTrig=true, wordTrig=false }, fmta([[\underbrace{<>}^{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(1) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="s", regTrig=true, wordTrig=false }, fmta([[\overset{<>}{<>}<>]],
-{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(2) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="S", regTrig=true, wordTrig=false }, fmta([[\underset{<>}{<>}<>]],
-{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="s", regTrig=true, wordTrig=false }, fmta([[\overset{<>}{<>}]],
+{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="S", regTrig=true, wordTrig=false }, fmta([[\underset{<>}{<>}]],
+{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
 
 mysnips[#mysnips+1] = s( { trig="l", regTrig=true, wordTrig=false }, fmta([[\underline{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
@@ -548,8 +548,8 @@ mysnips[#mysnips+1] = s( { trig="L", regTrig=true, wordTrig=false }, fmta([[\ove
 
 mysnips[#mysnips+1] = s( { trig="c", regTrig=true, wordTrig=false }, fmta([[\cancel{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
-mysnips[#mysnips+1] = s( { trig="k", regTrig=true, wordTrig=false }, fmta([[\cancelto{<>}{<>}<>]],
-{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}), i(2) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="k", regTrig=true, wordTrig=false }, fmta([[\cancelto{<>}{<>}]],
+{ i(1), f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
 
 mysnips[#mysnips+1] = s( { trig="r", regTrig=true, wordTrig=false }, fmta([[\sqrt{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })

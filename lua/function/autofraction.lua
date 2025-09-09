@@ -37,7 +37,7 @@ function equation_bounds(str)
 		end
 	end
 
-	return -1
+	return 1
 end
 
 function auto_fraction(str)
@@ -77,13 +77,10 @@ function auto_fraction(str)
 		i = i - 1
 	end
 
-	local numerator = str:sub(start, to)
-
-	if numerator:sub(1, 1) == "(" and numerator:sub(-1, -1) == ")" then
-		numerator = numerator:sub(2, -2)
-		start = start + 1
-		to = to - 1
-	end
+	--if str:sub(start, start) == "(" and str:sub(to, to) == ")" then
+	--	start = start + 1
+	--	to = to - 1
+	--end
 
 	return start, to
 end

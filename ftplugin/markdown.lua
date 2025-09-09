@@ -8,6 +8,7 @@ map("n", "<leader>q", "q", { noremap = true })
 
 map("n", "<leader>tc", function()
 	local cursor = vim.api.nvim_win_get_cursor(0)
+	vim.cmd("normal $")
 	vim.fn.search("^>*[", "b")
 
 	local line = vim.fn.getline(vim.fn.line("."))
@@ -60,6 +61,9 @@ map({"n", "i"}, "<A-m>", "<cmd>ObsidianExtractNote<CR>")
 map({"n", "i"}, "<A-j>", "<cmd>ObsidianSearch<CR>")
 map({"n", "i"}, "<A-n>", "<cmd>ObsidianNew<CR>")
 map({"n", "i"}, "<A-k>", "<cmd>ObsidianTOC<CR>")
+
+local auto_brackets = require("function.enlarge_brackets")
+map({"n", "i"}, "<F9>", function() auto_brackets() end)
 
 vim.opt.linebreak = true
 

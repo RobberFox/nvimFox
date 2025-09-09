@@ -1,11 +1,11 @@
-local function snug_text()
+local function auto_brackets()
 	local line = vim.fn.getline(vim.fn.line("."))
 	local cursor = vim.api.nvim_win_get_cursor(0)
 
 	local braces = {
-		{"%(", "%)"},
-		{"%[", "%]"},
-		{"%|", "%|"},
+		{"(", ")"},
+		{"[", "]"},
+		{"|", "|"},
 		{"\\{", "\\}"},
 		{"\\langle", "\\rangle"},
 		{"\\lvert", "\\rvert"},
@@ -34,7 +34,7 @@ local function snug_text()
 			end
 			if (unwanted_brace_depth == 0) and (substr == close) then
 				depth = depth + 1
-				table.insert(spots.closing, i)
+				table.insert(spots.closing, i+1-#close)
 			elseif (substr == close) then
 				unwanted_brace_depth = unwanted_brace_depth - 1
 			end
@@ -72,17 +72,24 @@ local function snug_text()
 	local right = "\\right"
 	local left = "\\left"
 	local shift = 0
+	local nestcount = 0
 	for _,i in ipairs(spots.closing) do
-		line = string.insert(line, right, i-1+shift)
-		shift = shift + #right
+		if line:sub(i-#right-nestcount, i-1-nestcount) ~= right then
+			vim.notify("Closing: "..line:sub(i-#right, i))
+			line = string.insert(line, right, i-1+shift)
+			shift = shift + #right
+			nestcount = nestcount + 1
+		end
 	end
 
 	for _,i in ipairs(spots.opening) do
-		line = string.insert(line, left, i-1)
+		if line:sub(i-#left, i-1) ~= left then
+			line = string.insert(line, left, i-1)
+	end
 	end
 
 	vim.fn.setline(".", line)
-	vim.api.nvim_win_set_cursor(0, { cursor[1], position+shift-2 })
+	vim.api.nvim_win_set_cursor(0, { cursor[1], position+shift-nestcount })
 end
 
-return snug_text
+return auto_brackets
