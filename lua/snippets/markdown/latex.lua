@@ -316,12 +316,12 @@ mysnips[#mysnips+1] = s({ trig="mod", wordTrig=false, snippetType="autosnippet" 
 
 mysnips[#mysnips+1] = s({ trig="(", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[(<>)]],
 { i(1) }), { condition = math })
-mysnips[#mysnips+1] = s({ trig="{", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[{<>}]],
-{ i(1) }), { condition = math })
+--mysnips[#mysnips+1] = s({ trig="{", wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[{<>}]],
+--{ i(1) }), { condition = math })
 
 local brackets = {
 	{ "(", "(", ")" },
-	{ "{", "{", "}" },
+	{ "s", "\\{", "\\}" },
 	{ "|", "|", "|" },
 	{ "[", "[", "]" },
 	{ "a", "<<", ">>" },
@@ -330,7 +330,7 @@ local brackets = {
 }
 
 for index = 1, #brackets, 1 do
-	mysnips[#mysnips+1] = s({ trig="lr"..brackets[index][1], wordTrig=false, snippetType="autosnippet" }, fmta("\\left"..brackets[index][2].." <> ".."\\right"..brackets[index][3],
+	mysnips[#mysnips+1] = s({ trig="lr"..brackets[index][1], wordTrig=false, snippetType="autosnippet", priority=10000 }, fmta("\\left"..brackets[index][2].." <> ".."\\right"..brackets[index][3],
 	{ i(1)}), { condition = math })
 end
 
@@ -458,7 +458,7 @@ for _, htrig in ipairs({ "sinh", "cosh", "tanh", "coth" }) do
 end
 
 -- Subscripts
-mysnips[#mysnips+1] = s( { trig="(%a)(%d)", regTrig=true, wordTrig=false, snippetType="autosnippet", priority=100 }, fmta([[<>_{<>}]],
+mysnips[#mysnips+1] = s( { trig="(%a)(%d)", regTrig=true, wordTrig=false, snippetType="autosnippet", priority=10000 }, fmta([[<>_{<>}]],
 { f(function(args, snip) return snip.captures[1] end, {}), f(function(args, snip) return snip.captures[2] end, {}) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="\\hat{(%a)}(%d)", regTrig=true, wordTrig=false, snippetType="autosnippet" }, fmta([[\hat{<>}_{<>}]],
 { f(function(args, snip) return snip.captures[1] end, {}), f(function(args, snip) return snip.captures[2] end, {}) }), { condition = math })
@@ -554,6 +554,30 @@ mysnips[#mysnips+1] = s( { trig="k", regTrig=true, wordTrig=false }, fmta([[\can
 mysnips[#mysnips+1] = s( { trig="r", regTrig=true, wordTrig=false }, fmta([[\sqrt{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="x", regTrig=true, wordTrig=false }, fmta([[\boxed{<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+
+-- Colours
+
+mysnips[#mysnips+1] = s( { trig="@m", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rmage}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@v", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rviol}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@b", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rblue}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@c", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rcyan}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@l", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rlime}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@p", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rpuke}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@o", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rorng}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+
+mysnips[#mysnips+1] = s( { trig="@r", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rred}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="@g", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[{\color{rgren}<>}]],
+{ f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
+mysnips[#mysnips+1] = s( { trig="ex", regTrig=true, wordTrig=false, priority = 10000 }, fmta([[\ex{<>}]],
 { f(function(args, snip) return snip.env.TM_SELECTED_TEXT end, {}) }), { condition = math })
 
 return mysnips
