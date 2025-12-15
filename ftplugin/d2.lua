@@ -6,7 +6,7 @@
 
 -- NOTE: maybe I can create a new buffer in a separate tab so that it's more seamless while taking notes.
 
-local script_dir = vim.fn.expand("~").."/code/d2/"
+local script_dir = vim.fn.expand("~").."/code/d2-figures/"
 local paste_dir = vim.fn.expand("~").."/stellardriven/3-Dev/Attachments/"
 
 local function kitty_execute(cmd)
@@ -15,7 +15,7 @@ end
 
 vim.keymap.set("n", "<F4>", function()
 	local file = vim.fn.expand("%:t"):match("[^.]+")
-	local filename = vim.fn.input { prompt = "Enter figure name: ", default = file }
+	local filename = vim.fn.input { prompt = "Enter filename: ", default = file }
 
 	if filename == "" then
 		vim.notify("Aborted!")

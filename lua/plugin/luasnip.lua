@@ -14,7 +14,8 @@ return {
 
 			ls.setup({
 				enable_autosnippets = true,
-				store_selection_keys="<Tab>"
+				store_selection_keys="<Tab>",
+				ext_opts
 			})
 
 			map("n", "<leader>ls", function()
