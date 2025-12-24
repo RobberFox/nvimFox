@@ -30,4 +30,14 @@ return {
 	s({ trig="№:", wordTrig=false, snippetType="autosnippet" }, {
 		t("#^")
 	}),
+	s({ trig="$", wordTrig=false, snippetType="autosnippet" }, {
+		t("\\$")
+	}),
+
+	--s({ trig = "table" }, fmta([[
+	--|<>||||
+	--|--|--|--|--|
+	--|||||
+	--]], { i(1) }), { condition = math })
+
 }

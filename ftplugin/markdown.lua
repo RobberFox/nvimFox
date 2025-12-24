@@ -99,9 +99,9 @@ require("fzf-lua").setup {
 	},
 }
 
-local cmp = require('cmp')
-local sources = cmp.get_config().sources
-
-cmp.setup {
-	sources = {}
-}
+--local cmp = require('cmp')
+--local sources = cmp.get_config().sources
+--
+--cmp.setup {
+--	sources = { { name = "luasnip" } }
+--}

@@ -15,7 +15,13 @@ return {
 			ls.setup({
 				enable_autosnippets = true,
 				store_selection_keys="<Tab>",
-				ext_opts
+				--ext_opts = {
+				--	[require("luasnip.util.types").choiceNode] = {
+				--		active = {
+				--			virt_text = { { "o", "GruvboxBlue" } },
+				--		},
+				--	}
+				--}
 			})
 
 			map("n", "<leader>ls", function()
@@ -51,4 +57,14 @@ return {
 			require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/lua/snippets/"})
 		end
 	},
+
+	--{
+	--	'L3MON4D3/cmp-luasnip-choice',
+
+	--	config = function()
+	--		require('cmp_luasnip_choice').setup({
+	--			auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
+	--		});
+	--	end,
+	--}
 }
