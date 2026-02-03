@@ -1,5 +1,7 @@
-local cmp = require('cmp')
-local sources = cmp.get_config().sources
+--local cmp = require('cmp')
+--local lsp_types = require('cmp.types').lsp.CompletionItemKind
+--local sources = cmp.get_config().sources
+--
 --for i = #sources, 1, -1 do
 --	if sources[i].name == 'emoji' then
 --		table.remove(sources, i)
@@ -7,8 +9,30 @@ local sources = cmp.get_config().sources
 --end
 --cmp.setup.buffer({ sources = sources })
 
-cmp.setup {
-	completion = {
-		autocomplete = false
-	},
-}
+--cmp.setup {
+--	completion = {
+--		autocomplete = false
+--	},
+--}
+
+--cmp.setup({
+--	sources = {
+--		{
+--			name = 'nvim_lsp',
+--			entry_filter = function(entry, ctx)
+--				local kind = entry:get_kind() -- Get numeric kind
+--				-- Filter for Variable (6), Function (3), and Method (2)
+--				return kind == lsp_types.Variable 
+--				or kind == lsp_types.Function 
+--				or kind == lsp_types.Method
+--			end
+--		},
+--		{
+--			name = "lazydev",
+--			group_index = 0, -- To skip loading LuaLS completions (as lazydev recommends)
+--		},
+--		{ name = "luasnip" },
+--		-- { name = "luasnip_choice" },
+--		{ name = "path" },
+--	},
+--})

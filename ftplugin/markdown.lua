@@ -51,16 +51,18 @@ for i = 1, 5, 1 do
 	map({"n", "i"}, "<C-"..i..">", function() heading_function(i) end)
 end
 
-map({"n", "i"}, "<C-k>", "<cmd>ObsidianFollowLink<CR>")
-map({"n", "i"}, "<F2>", "<cmd>ObsidianRename<CR>")
-map({"n", "i"}, "<A-c>", "<cmd>ObsidianTemplate<CR>")
-map({"n", "i"}, "<A-v>", "<cmd>ObsidianPasteImg<CR>")
-map({"n", "i"}, "<A-o>", "<cmd>ObsidianQuickSwitch<CR>")
-map({"n", "i"}, "<A-l>", "<cmd>ObsidianBacklinks<CR>")
-map({"n", "i"}, "<A-m>", "<cmd>ObsidianExtractNote<CR>")
-map({"n", "i"}, "<A-j>", "<cmd>ObsidianSearch<CR>")
-map({"n", "i"}, "<A-n>", "<cmd>ObsidianNew<CR>")
-map({"n", "i"}, "<A-k>", "<cmd>ObsidianTOC<CR>")
+map({"n", "i"}, "<C-k>", "<cmd>Obsidian follow_link<CR>")
+map({"n", "i"}, "<F2>", "<cmd>Obsidian rename<CR>")
+map({"n", "i"}, "<A-c>", "<cmd>Obsidian template<CR>")
+map({"n", "i"}, "<A-v>", "<cmd>Obsidian paste_img<CR>")
+map({"n", "i"}, "<A-o>", "<cmd>Obsidian quick_switch<CR>")
+map({"n", "i"}, "<A-l>", "<cmd>Obsidian backlinks<CR>")
+map({"n", "i"}, "<A-j>", "<cmd>Obsidian search<CR>")
+map({"n", "i"}, "<A-n>", "<cmd>Obsidian new<CR>")
+map({"n", "i"}, "<A-k>", "<cmd>Obsidian toc<CR>")
+map("i", "<A-z>", "<Esc>lC")
+
+map({"v"}, "<A-m>", ":Obsidian extract_note")
 
 local auto_brackets = require("function.enlarge_brackets")
 map({"n", "i"}, "<F9>", function() auto_brackets() end)
@@ -98,10 +100,3 @@ require("fzf-lua").setup {
 		formatter = "path.filename_first"
 	},
 }
-
---local cmp = require('cmp')
---local sources = cmp.get_config().sources
---
---cmp.setup {
---	sources = { { name = "luasnip" } }
---}

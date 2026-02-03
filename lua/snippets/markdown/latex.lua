@@ -1,6 +1,6 @@
 -- WARNING: regTrig=true slows down my config a lot
 
-local MY_LENGTH = 100
+local MY_LENGTH = 1000
 
 local has_treesitter, ts = pcall(require, "vim.treesitter")
 local _, query = pcall(require, "vim.treesitter.query")
@@ -53,7 +53,7 @@ function math()
 	end
 end
 
-local symbols = {
+local symbols_mapped = {
 	{"\"a", "\\alpha"},
 	{"\"b", "\\beta"},
 	{"\"c", "\\chi"},
@@ -176,9 +176,9 @@ local symbols = {
 
 local mysnips = {}
 
-for index = 1, #symbols, 1 do
-	mysnips[#mysnips+1] = s({ trig=symbols[index][1], wordTrig=false, snippetType="autosnippet" }, {
-		t(symbols[index][2]),
+for index = 1, #symbols_mapped, 1 do
+	mysnips[#mysnips+1] = s({ trig=symbols_mapped[index][1], wordTrig=false, snippetType="autosnippet" }, {
+		t(symbols_mapped[index][2]),
 	}, { condition = math })
 end
 
@@ -425,9 +425,9 @@ local triggers = { "sum", "int", "frac", "prod", "bigcup", "bigcap" }
 
 -- Spacing
 for _, symbol in ipairs(SYMBOLS) do
-	mysnips[#mysnips+1] = s( { trig=symbol.."(%a)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet" }, fmta(symbol.." <>",
+	mysnips[#mysnips+1] = s( { trig=symbol.."(%a)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet", priority = 20000 }, fmta(symbol.." <>",
 	{ f(function(args, snip) return snip.captures[1] end, {}) }), { condition = math })
-	mysnips[#mysnips+1] = s( { trig=symbol.."(%d)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet" }, fmta(symbol.."<>",
+	mysnips[#mysnips+1] = s( { trig=symbol.."(%d)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet", priority = 20000 }, fmta(symbol.." <>",
 	{ f(function(args, snip) return snip.captures[1] end, {}) }), { condition = math })
 
 	mysnips[#mysnips+1] = s( { trig=symbol.." sr", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet", priority = 10000 }, t(symbol.."^{2}"), { condition = math })
@@ -462,7 +462,7 @@ for _, htrig in ipairs({ "sinh", "cosh", "tanh", "coth" }) do
 end
 
 -- Subscripts
-mysnips[#mysnips+1] = s( { trig="(%a)(%d)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet", priority=10000 }, fmta([[<>_{<>}]],
+mysnips[#mysnips+1] = s( { trig="(%a)(%d)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet", priority = 100}, fmta([[<>_{<>}]],
 { f(function(args, snip) return snip.captures[1] end, {}), f(function(args, snip) return snip.captures[2] end, {}) }), { condition = math })
 mysnips[#mysnips+1] = s( { trig="\\hat{(%a)}(%d)", regTrig=true, trigEngineOpts = {max_len = MY_LENGTH}, wordTrig=false, snippetType="autosnippet" }, fmta([[\hat{<>}_{<>}]],
 { f(function(args, snip) return snip.captures[1] end, {}), f(function(args, snip) return snip.captures[2] end, {}) }), { condition = math })

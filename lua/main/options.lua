@@ -51,6 +51,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Sets how neov
 -- vim.g.netrw_liststyle = 3 -- Tree listing
 
 vim.g.tex_flavor = "latex"
+vim.opt.pumheight = 10
 
 -- NOTE: Language stuff
 
