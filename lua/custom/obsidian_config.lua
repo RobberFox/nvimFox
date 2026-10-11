@@ -17,17 +17,19 @@ obsidian.setup {
 		return title
 	end,
 
-	wiki_link_func = function(opts)
-		local header_or_block = ""
-		if opts.anchor then
-			header_or_block = string.format("#%s", opts.anchor.header)
-		elseif opts.block then
-			header_or_block = string.format("#%s", opts.block.id)
-		end
-		return string.format("[[%s%s]]", opts.label, header_or_block)
-	end,
-
-	preferred_link_style = "wiki",
+	link = {
+		style = "wiki",
+		wiki_link_style = "name_only",
+		--style = function(opts)
+		--	local header_or_block = ""
+		--	if opts.anchor then
+		--		header_or_block = string.format("#%s", opts.anchor.header)
+		--	elseif opts.block then
+		--		header_or_block = string.format("#%s", opts.block.id)
+		--	end
+		--	return string.format("[[%s%s]]", opts.label, header_or_block)
+		--end,
+	},
 
 	templates = {
 		folder = "0-Files/Templates",
@@ -40,8 +42,6 @@ obsidian.setup {
 
 	completion = (function()
 		return {
-			nvim_cmp = false,
-			blink = true,
 			min_chars = 2,
 			match_case = false,
 			create_new = true,

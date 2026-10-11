@@ -36,7 +36,7 @@ blink_cmp.setup {
 		default = { 'lsp', 'path', 'snippets', 'buffer' },
 
 		per_filetype = {
-			markdown = {},
+			markdown = { "lsp" },
 			--lua = { inherit_defaults = true, 'lazydev' }
 		},
 	},

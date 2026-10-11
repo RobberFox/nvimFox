@@ -85,8 +85,8 @@ vim.opt.linebreak = true
 --orange "#ff966c"
 
 for i = 1, 6, 1 do
-	vim.api.nvim_set_hl(0, "markdownH"..tostring(i), { fg = "#ff757f", bg = "#452e2e", bold = true })
-	vim.api.nvim_set_hl(0, "markdownH"..tostring(i).."Delimiter", { fg = "#ff757f", bg = "#452e2e" })
+	vim.api.nvim_set_hl(0, "@markup.heading."..tostring(i)..".markdown", { fg = "#ff757f", bg = "#452e2e", bold = true })
+	--vim.api.nvim_set_hl(0, "markdownH"..tostring(i).."Delimiter", { fg = "#ff757f", bg = "#452e2e" })
 end
 
 vim.api.nvim_set_hl(0, "@markup.strong.markdown_inline", { fg = "#ff757f" })

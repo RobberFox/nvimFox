@@ -22,15 +22,23 @@ return {
 					styles = 1,
 		 }
 
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "markdown" },
-				highlight = {
-					enable = true,
-					disable = { "latex" },
-					additional_vim_regex_highlighting = { "latex", "markdown" },
-				},
-				--other treesitter settings
-			})
+			--require("nvim-treesitter.configs").setup({
+			--	ensure_installed = { "markdown" },
+			--	highlight = {
+			--		enable = true,
+			--		disable = { "latex" },
+			--		additional_vim_regex_highlighting = { "latex", "markdown" },
+			--	},
+			--	--other treesitter settings
+			--})
+
+			--vim.api.nvim_create_autocmd("FileType", {
+			--	pattern = { "markdown" },
+			--	callback = function(ev)
+			--		vim.treesitter.start(ev.buf)
+			--	end,
+			--})
+
 		end,
 
 		config = function()

@@ -30,13 +30,52 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end
 })
 
+--vim.api.nvim_create_autocmd({ "FileType" }, {
+--	callback = function()
+--		if require("nvim-treesitter.parsers").has_parser() then
+--			vim.opt.foldmethod = "expr"
+--			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--		else
+--			vim.opt.foldmethod = "syntax"
+--		end
+--	end,
+--})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
-		if require("nvim-treesitter.parsers").has_parser() then
+		if vim.treesitter.get_parser() then
 			vim.opt.foldmethod = "expr"
-			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		else
 			vim.opt.foldmethod = "syntax"
 		end
 	end,
 })
+
+
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	pattern = "*",
+	callback = function(ev)
+		local max_filesize = 100 * 1024 -- 100 KB
+		local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(ev.buf))
+		if ok and stats and stats.size > max_filesize then
+			-- Deactivate treesitter highlighting for this buffer
+			vim.treesitter.stop(ev.buf)
+		end
+	end,
+})
+
+--vim.api.nvim_create_autocmd("FileType", {
+--	pattern = "markdown",
+--	callback = function()
+--		require("vim.treesitter.query").set( "markdown", -- Don't conceal code blocks
+--		'highlights',
+--		[[
+--		;From MDeiml/tree-sitter-markdown
+--		[
+--		(fenced_code_block_delimiter)
+--		] @punctuation.delimiter
+--		]])
+--	end,
+--})
